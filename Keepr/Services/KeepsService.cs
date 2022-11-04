@@ -13,4 +13,51 @@ public class KeepsService
   {
     return _keepsRepo.CreateKeep(keepData);
   }
+
+  internal List<Keep> GetAllKeeps()
+  {
+    return _keepsRepo.GetAllKeeps();
+  }
+
+  internal Keep GetKeepById(int keepId)
+  {
+    var keep = _keepsRepo.GetKeepById(keepId);
+    if (keep == null)
+    {
+      throw new Exception("Bad Keep Id");
+    }
+    return keep;
+  }
+
+  internal Keep EditKeep(Keep keep, string accountId)
+  {
+    var original = GetKeepById(keep.Id);
+    if (keep.CreatorId != accountId)
+    {
+      throw new Exception("Unauthorized To Edit This Keep");
+    }
+
+    original.Name = keep.Name;
+    original.Img = keep.Img ?? original.Img;
+    original.Description = keep.Description;
+    original.Views = keep.Views;
+
+    var updated = _keepsRepo.UpdateKeep(original);
+    return updated;
+  }
+
+  internal void DeleteKeep(int keepId, string userId)
+  {
+    var keep = GetKeepById(keepId);
+    if (keep == null)
+    {
+      throw new Exception("Bad Keep Id");
+    }
+
+    if(keep.CreatorId != userId)
+    {
+      throw new Exception("Bad Keep Id");
+    }
+    _keepsRepo.DeleteKeep(keepId);
+  }
 }
