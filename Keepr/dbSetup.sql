@@ -17,11 +17,9 @@ CREATE TABLE
         name varchar(255) NOT NULL,
         description TEXT NOT NULL,
         img varchar(255) NOT NULL,
-        views int NOT NULL,
-        vaultId INT NOT NULL,
+        views int NOT NULL DEFAULT 0 ,
         creatorId VARCHAR(255) NOT NULL,
-        Foreign Key (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
-        Foreign Key (vaultId) REFERENCES vaults(id) ON DELETE CASCADE 
+        Foreign Key (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
 
 
