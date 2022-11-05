@@ -55,7 +55,7 @@ public class VaultsRepository : BaseRepository
       throw new Exception("Unable to update");
     }
 
-    return data;
+    return GetVaultById(data.Id);
   }
 
   internal void DeleteVault(int id)

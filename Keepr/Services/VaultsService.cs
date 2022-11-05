@@ -3,10 +3,12 @@ namespace Keepr.Services;
 public class VaultsService
 {
   private readonly VaultsRepository _vaultsRepo;
+  private readonly VaultKeepsRepository _vkRepo;
 
-  public VaultsService(VaultsRepository vaultsRepo)
+  public VaultsService(VaultsRepository vaultsRepo, VaultKeepsRepository vkRepo)
   {
     _vaultsRepo = vaultsRepo;
+    _vkRepo = vkRepo;
   }
 
   internal Vault CreateVault(Vault vaultData)
@@ -14,24 +16,26 @@ public class VaultsService
     return _vaultsRepo.CreateVault(vaultData);
   }
 
-  internal Vault GetVaultById(int vaultId)
+  internal Vault GetVaultById(int vaultId, string userId)
   {
-    var vault = _vaultsRepo.GetVaultById(vaultId);
+    Vault vault = _vaultsRepo.GetVaultById(vaultId);
     if (vault == null)
     {
       throw new Exception("Bad Vault Id");
     }
-
     if (vault.IsPrivate == true)
     {
-      throw new Exception("This Vault Is Private");
+      if (vault.CreatorId != userId)
+      {
+        throw new Exception("skdjfhlkjsf");
+      }
     }
     return vault;
   }
 
   internal Vault EditVault(Vault vault, string userId)
   {
-    var original = GetVaultById(vault.Id);
+    var original = GetVaultById(vault.Id, userId);
     if (vault.CreatorId != userId)
     {
       throw new Exception("Unauthorized To Edit This Keep");
@@ -49,11 +53,19 @@ public class VaultsService
 
   internal void DeleteVault(int vaultId, string userId)
   {
-    var vault = GetVaultById(vaultId);
+    var vault = GetVaultById(vaultId, userId);
     if (vault.CreatorId != userId)
     {
       throw new Exception("No not yours....");
     }
     _vaultsRepo.DeleteVault(vaultId);
+  }
+
+  internal List<KeepInVault> GetKeepsByVaultId(int vaultId, string id)
+  {
+    Vault vault = GetVaultById(vaultId, id);
+    List<KeepInVault> keeps = _vkRepo.GetKeepsByVaultId(vaultId);
+    return keeps;
+
   }
 }
