@@ -6,15 +6,16 @@ public class VaultsController : ControllerBase
 {
   private readonly Auth0Provider _auth0provider;
   private readonly VaultsService _vs;
+  private readonly VaultKeepsService _vks;
 
-  public VaultsController(Auth0Provider auth0provider, VaultsService vs)
+  public VaultsController(Auth0Provider auth0provider, VaultsService vs, VaultKeepsService vks)
   {
     _auth0provider = auth0provider;
     _vs = vs;
+    _vks = vks;
   }
 
-
-   [Authorize]
+  [Authorize]
     [HttpPost]
     public async Task<ActionResult<Vault>> CreateVault([FromBody] Vault vaultData)
     {
@@ -34,7 +35,6 @@ public class VaultsController : ControllerBase
   
 
     [HttpGet("{vaultId}")]
-  
     public ActionResult<Vault> GetVaultById(int vaultId)
     {
       try
@@ -47,9 +47,24 @@ public class VaultsController : ControllerBase
         return BadRequest(e.Message);
       }
     }
-  
-  
-   [HttpPut("{vaultId}")]
+
+  [HttpGet("{vaultId}/keeps")]
+  public ActionResult<List<KeepInVault>> GetKeepsByVaultId(int vaultId)
+  {
+    try
+    {
+      List<KeepInVault> vaultKeeps = _vks.GetKeepsByVaultId(vaultId);
+      return Ok(vaultKeeps);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
+
+
+  [HttpPut("{vaultId}")]
       [Authorize]
       public async Task<ActionResult<Vault>> EditVault([FromBody] Vault vaultData, int vaultId)
       {

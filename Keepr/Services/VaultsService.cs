@@ -32,19 +32,20 @@ public class VaultsService
       throw new Exception("Unauthorized To Edit This Keep");
     }
 
-    original.Name = vault.Name;
+    original.Name = vault.Name ?? original.Name;
     original.Img = vault.Img ?? original.Img;
     original.Description = vault.Description ?? original.Description;
+    original.IsPrivate = vault.IsPrivate ?? original.IsPrivate;
 
 
-    var updated = _vaultsRepo.UpdateVault(original);
+    var updated = _vaultsRepo.EditVault(original);
     return updated;
   }
 
   internal void DeleteVault(int vaultId, string userId)
   {
     var vault = GetVaultById(vaultId);
-    if(vault.CreatorId != userId)
+    if (vault.CreatorId != userId)
     {
       throw new Exception("No not yours....");
     }

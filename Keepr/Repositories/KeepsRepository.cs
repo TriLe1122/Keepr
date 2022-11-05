@@ -15,11 +15,11 @@ public class KeepsRepository : BaseRepository
              SELECT LAST_INSERT_ID()
                  ; ";
 
-    keepData.CreatedAt = DateTime.Now;
-    keepData.UpdatedAt = DateTime.Now;
+    // keepData.CreatedAt = DateTime.Now;
+    // keepData.UpdatedAt = DateTime.Now;
     int keepId = _db.ExecuteScalar<int>(sql, keepData);
-    keepData.Id = keepId;
-    return keepData;
+    // keepData.Id = keepId;
+    return GetKeepById(keepId);
   }
   internal List<Keep> GetAllKeeps()
   {
@@ -30,7 +30,7 @@ public class KeepsRepository : BaseRepository
     a.*
     FROM keeps k
     JOIN accounts a ON a.id = k.creatorId
-    LEFT JOIN vault_keeps vk ON vk.keepId = k.id
+    LEFT JOIN vaultKeeps vk ON vk.keepId = k.id
     GROUP BY k.id
     ;";
     return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
@@ -40,9 +40,9 @@ public class KeepsRepository : BaseRepository
      }).ToList();
   }
 
-  internal Keep UpdateKeep(Keep data)
+  internal Keep EditKeep(Keep data)
   {
-     string sql = @"
+    string sql = @"
                   UPDATE keeps SET
                   name = @name,
                   img = @img,
@@ -50,25 +50,25 @@ public class KeepsRepository : BaseRepository
                   views = @views
                   WHERE id = @Id LIMIT 1
                        ;";
-        var rows = _db.Execute(sql, data);
-        if (rows != 1)
-        {
-          throw new Exception("Unable to update" );
-        }
-    
-        return data;
+    var rows = _db.Execute(sql, data);
+    if (rows != 1)
+    {
+      throw new Exception("Unable to update");
+    }
+
+    return data;
   }
 
   internal void DeleteKeep(int id)
   {
-      var sql = @"
+    var sql = @"
               DELETE FROM keeps WHERE id = @id
                   ; ";
-    
-       var rows = _db.Execute(sql, new {id});
-    if (rows !=1){throw new Exception("Data is bad or Id is Bad");}
+
+    var rows = _db.Execute(sql, new { id });
+    if (rows != 1) { throw new Exception("Data is bad or Id is Bad"); }
     return;
-    
+
   }
 
   internal Keep GetKeepById(int keepId)
@@ -80,7 +80,7 @@ public class KeepsRepository : BaseRepository
     a.*
     FROM keeps k
     JOIN accounts a ON a.id = k.creatorId
-    LEFT JOIN vault_keeps vk ON vk.keepId = k.id
+    LEFT JOIN vaultKeeps vk ON vk.keepId = k.id
     WHERE k.id = @keepId
     GROUP BY k.id
     ;";

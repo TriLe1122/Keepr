@@ -10,7 +10,7 @@ public class VaultsRepository : BaseRepository
 
   internal Vault CreateVault(Vault vaultData)
   {
-      var sql = @"
+    var sql = @"
               INSERT INTO
               vaults (name, description, img, creatorId)
               VALUES (@Name, @Description, @Img, @CreatorId);
@@ -18,13 +18,13 @@ public class VaultsRepository : BaseRepository
                   ; ";
     vaultData.CreatedAt = DateTime.Now;
     vaultData.UpdatedAt = DateTime.Now;
-       vaultData.Id = _db.ExecuteScalar<int>(sql, vaultData);
-        return vaultData;
+    vaultData.Id = _db.ExecuteScalar<int>(sql, vaultData);
+    return vaultData;
   }
 
   internal Vault GetVaultById(int id)
   {
-      string sql = @"
+    string sql = @"
                 SELECT 
                 v.*,
                 a.*
@@ -32,28 +32,30 @@ public class VaultsRepository : BaseRepository
                 JOIN accounts a ON a.id = v.creatorId
                 WHERE v.id = @id
                      ;";
-        return _db.Query<Vault, Profile, Vault>(sql,(vault, profile) => {
-          vault.Creator = profile;
-          return vault;
-        }, new {id}).FirstOrDefault();
+    return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
+    {
+      vault.Creator = profile;
+      return vault;
+    }, new { id }).FirstOrDefault();
   }
 
-  internal Vault UpdateVault(Vault data)
+  internal Vault EditVault(Vault data)
   {
-     string sql = @"
+    string sql = @"
                   UPDATE vaults SET
-                  name = @name,
-                  description = @description,
-                  img = @img
+                  name = @Name,
+                  description = @Description,
+                  img = @Img,
+                  isPrivate = @IsPrivate
                   WHERE id = @Id LIMIT 1
                        ;";
-        var rows = _db.Execute(sql, data);
-        if (rows != 1)
-        {
-          throw new Exception("Unable to update" );
-        }
-    
-        return data;
+    var rows = _db.Execute(sql, data);
+    if (rows != 1)
+    {
+      throw new Exception("Unable to update");
+    }
+
+    return data;
   }
 
   internal void DeleteVault(int id)

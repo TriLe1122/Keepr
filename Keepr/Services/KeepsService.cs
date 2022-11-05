@@ -37,26 +37,22 @@ public class KeepsService
       throw new Exception("Unauthorized To Edit This Keep");
     }
 
-    original.Name = keep.Name;
+    original.Name = keep.Name ?? original.Name;
     original.Img = keep.Img ?? original.Img;
-    original.Description = keep.Description;
+    original.Description = keep.Description ?? original.Description;
     original.Views = keep.Views;
 
-    var updated = _keepsRepo.UpdateKeep(original);
+    var updated = _keepsRepo.EditKeep(original);
     return updated;
   }
 
   internal void DeleteKeep(int keepId, string userId)
   {
     var keep = GetKeepById(keepId);
-    if (keep == null)
-    {
-      throw new Exception("Bad Keep Id");
-    }
 
-    if(keep.CreatorId != userId)
+    if (keep.CreatorId != userId)
     {
-      throw new Exception("Bad Keep Id");
+      throw new Exception("Unauthorized to Delete Keep");
     }
     _keepsRepo.DeleteKeep(keepId);
   }

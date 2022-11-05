@@ -38,16 +38,16 @@ CREATE TABLE
 
 
     CREATE TABLE
-    IF NOT EXISTS vault_keeps(
+    IF NOT EXISTS vaultKeeps(
         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
         updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
         vaultId INT NOT NULL,
         keepId INT NOT NULL, 
-        accountId VARCHAR(255) NOT NULL,
-        FOREIGN KEY (vaultId) REFERENCES vaults(id),
-        FOREIGN KEY (keepId) REFERENCES keeps(id), 
-        FOREIGN KEY (accountId) REFERENCES accounts(id)
+        creatorId VARCHAR(255) NOT NULL,
+        FOREIGN KEY (vaultId) REFERENCES vaults(id) ON DELETE CASCADE ,
+        FOREIGN KEY (keepId) REFERENCES keeps(id) ON DELETE CASCADE , 
+        FOREIGN KEY (creatorId) REFERENCES accounts(id)
     ) default charset utf8 COMMENT '';
 
 

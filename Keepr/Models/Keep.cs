@@ -11,8 +11,10 @@ public class Keep : IHasCreator
   public string Name { get; set; }
   public string Description { get; set; }
   public string Img { get; set; }
-  public int Views { get; set; }
+  public int Views { get; set; } = 0;
 
+
+  
   public int Kept { get; set; }
 
 //  extra
@@ -20,11 +22,4 @@ public class Keep : IHasCreator
   public Profile Creator { get ; set ; }
   public DateTime CreatedAt { get ; set ; }
   public DateTime UpdatedAt { get ; set ; }
-}
-
-public class VaultKeep : Keep
-{
-  public int VaultKeepId { get; set; }
-  public int VaultId { get; set; }
-
 }
