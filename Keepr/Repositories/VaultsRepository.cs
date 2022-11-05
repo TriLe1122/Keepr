@@ -22,7 +22,7 @@ public class VaultsRepository : BaseRepository
     return vaultData;
   }
 
-  internal Vault GetVaultById(int id)
+  internal Vault GetVaultById(int vaultId)
   {
     string sql = @"
                 SELECT 
@@ -30,13 +30,13 @@ public class VaultsRepository : BaseRepository
                 a.*
                 FROM vaults v
                 JOIN accounts a ON a.id = v.creatorId
-                WHERE v.id = @id
+                WHERE v.id = @vaultId
                      ;";
     return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
     {
       vault.Creator = profile;
       return vault;
-    }, new { id }).FirstOrDefault();
+    }, new { vaultId }).FirstOrDefault();
   }
 
   internal Vault EditVault(Vault data)

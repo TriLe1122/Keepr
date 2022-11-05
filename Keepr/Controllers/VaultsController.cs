@@ -35,11 +35,12 @@ public class VaultsController : ControllerBase
   
 
     [HttpGet("{vaultId}")]
-    public ActionResult<Vault> GetVaultById(int vaultId)
+    public async Task<ActionResult<Vault>> GetVaultById(int vaultId)
     {
       try
       {
-        Vault vault = _vs.GetVaultById(vaultId);
+      Account userInfo = await _auth0provider.GetUserInfoAsync<Account>(HttpContext);
+      Vault vault = _vs.GetVaultById(vaultId);
         return Ok(vault);
       }
       catch (Exception e)

@@ -21,6 +21,11 @@ public class VaultsService
     {
       throw new Exception("Bad Vault Id");
     }
+
+    if (vault.IsPrivate == true)
+    {
+      throw new Exception("This Vault Is Private");
+    }
     return vault;
   }
 
