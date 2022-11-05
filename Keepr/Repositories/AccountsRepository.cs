@@ -43,5 +43,24 @@ public class AccountsRepository
     _db.Execute(sql, update);
     return update;
   }
+
+  internal List<Vault> GetMyVaults(string accountId)
+  {
+    var sql = @"
+    SELECT 
+    v.*,
+    a.*
+    FROM vaults v
+    JOIN accounts a ON a.id = v.creatorId
+    WHERE v.creatorId = @accountId
+    GROUP BY v.id
+    ;";
+
+    return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
+    {
+      vault.Creator = profile;
+      return vault;
+    }, new { accountId }).ToList();
+  }
 }
 
