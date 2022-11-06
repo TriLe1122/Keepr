@@ -1,32 +1,34 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-lg navbar-white bg-white px-3 d-flex justify-content-between elevation-3 fixed-top">
+    <div class="d-flex">
+      <router-link class="" :to="{ name: 'Home' }">
+        <button class="button btn border border-3 me-3 hover">Home</button>
+      </router-link>
+
+
+      <div class="dropdown">
+        <button class="btn btn border border-3 dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Create
+        </button>
+        <ul class="dropdown-menu text-center p-0">
+          <li data-bs-toggle="modal" data-bs-target="#create-keep-modal">new keep</li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li>new vault</li>
+        </ul>
+      </div>
+
+
+    </div>
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+        <img alt="logo" src="src\assets\img\Keepr logo.png" class="bg-white" height="45" />
       </div>
     </router-link>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
-          </router-link>
-        </li>
-      </ul>
-      <!-- LOGIN COMPONENT HERE -->
-      <Login />
-    </div>
+
+    <Login class="hover" />
   </nav>
 </template>
 
@@ -60,5 +62,4 @@ a:hover {
     height: 64px;
   }
 }
-
 </style>
