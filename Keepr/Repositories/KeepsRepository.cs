@@ -44,10 +44,10 @@ public class KeepsRepository : BaseRepository
   {
     string sql = @"
                   UPDATE keeps SET
-                  name = @name,
-                  img = @img,
-                  description = @description,
-                  views = @views
+                  name = @Name,
+                  img = @Img,
+                  description = @Description,
+                  views = @Views
                   WHERE id = @Id LIMIT 1
                        ;";
     var rows = _db.Execute(sql, data);

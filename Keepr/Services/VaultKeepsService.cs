@@ -20,6 +20,11 @@ public class VaultKeepsService
     return _vkRepo.GetKeepsByVaultId(vaultId);
   }
 
+  internal List<VaultKeep> GetAllVaultKeeps()
+  {
+    return _vkRepo.GetAllVaultKeeps();
+  }
+
   internal void DeleteVaultKeep(int vaultKeepId, string accountId)
   {
     var vk = GetVaultKeepById(vaultKeepId);

@@ -4,8 +4,6 @@
       <router-link class="" :to="{ name: 'Home' }">
         <button class="button btn border border-3 me-3 hover">Home</button>
       </router-link>
-
-
       <div class="dropdown">
         <button class="btn btn border border-3 dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown"
           aria-expanded="false">
@@ -19,15 +17,12 @@
           <li>new vault</li>
         </ul>
       </div>
-
-
     </div>
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <img alt="logo" src="src\assets\img\Keepr logo.png" class="bg-white" height="45" />
       </div>
     </router-link>
-
     <Login class="hover" />
   </nav>
 </template>

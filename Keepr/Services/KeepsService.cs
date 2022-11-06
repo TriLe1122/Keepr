@@ -19,19 +19,30 @@ public class KeepsService
     return _keepsRepo.GetAllKeeps();
   }
 
-  internal Keep GetKeepById(int keepId)
+  internal Keep GetKeepById(int keepId, string userId)
   {
     var keep = _keepsRepo.GetKeepById(keepId);
     if (keep == null)
     {
       throw new Exception("Bad Keep Id");
     }
+    if (keep.CreatorId != userId)
+    {
+      keep.Views++;
+      UpdateKeep(keep);
+    }
     return keep;
   }
 
+  public void UpdateKeep(Keep k)
+  {
+    _keepsRepo.EditKeep(k);
+  }
+
+
   internal Keep EditKeep(Keep keep, string accountId)
   {
-    var original = GetKeepById(keep.Id);
+    var original = GetKeepById(keep.Id, accountId);
     if (keep.CreatorId != accountId)
     {
       throw new Exception("Unauthorized To Edit This Keep");
@@ -48,7 +59,7 @@ public class KeepsService
 
   internal void DeleteKeep(int keepId, string userId)
   {
-    var keep = GetKeepById(keepId);
+    var keep = GetKeepById(keepId, userId);
 
     if (keep.CreatorId != userId)
     {

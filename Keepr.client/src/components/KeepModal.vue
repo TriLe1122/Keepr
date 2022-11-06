@@ -8,7 +8,7 @@
       <div class="col-md-6 d-flex flex-column justify-content-between ">
 
        <div class="text-center">
-        <img alt="logo" src="src\assets\img\Vector (2).png">
+        <img alt="logo" src="src\assets\img\Vector (2).png"> {{keep.views}}
         <img alt="logo" src="src\assets\img\Logo.png">
        </div>
 
@@ -20,8 +20,8 @@
           {{keep.description}}
         </p>
        </div>
-        <router-link :to="{ name: 'Profile', params: { id: keep.creator.id} }" data-bs-dismiss-modal>
-          <img :src="keep.creator.picture" alt="" class="rounded-circle" height="40" width="40">
+        <router-link :to="{ name: 'Profile', params: { id: keep.creator.id} }">
+          <img :src="keep.creator.picture" alt="" class="rounded-circle" height="40" width="40" data-bs-dismiss="modal">
         </router-link>
       </div>
     </div>

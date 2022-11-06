@@ -8,6 +8,15 @@ public class VaultKeepsRepository : BaseRepository
   {
   }
 
+  internal List<VaultKeep> GetAllVaultKeeps()
+  {
+    string sql = @"
+    SELECT *
+    FROM vaultKeeps
+    ;";
+
+    return _db.Query<VaultKeep>(sql).ToList();
+  }
 
 
   internal VaultKeep GetVaultKeepById(int vaultKeepId)

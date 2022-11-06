@@ -1,12 +1,13 @@
 <template>
   <div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-xl">
-      <div class="modal-content modal-dialog-center">
+    <div class="modal-dialog modal-dialog-center modal-xl">
+      <div class="modal-content">
    
 
         <slot>
 
         </slot>
+
       </div>
     </div>
   </div>
