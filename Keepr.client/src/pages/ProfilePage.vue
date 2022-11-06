@@ -1,6 +1,6 @@
 <template>
   <div class="component">
-{{profile.name}}
+hi
   </div>
 </template>
 

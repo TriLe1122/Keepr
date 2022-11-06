@@ -22,7 +22,6 @@
        </div>
         <router-link :to="{ name: 'Profile', params: { id: keep.creator.id} }" data-bs-dismiss-modal>
           <img :src="keep.creator.picture" alt="" class="rounded-circle" height="40" width="40">
-
         </router-link>
       </div>
     </div>
@@ -32,19 +31,20 @@
 
 <script>
 
+import { RouterLink } from "vue-router";
 import { Keep } from "../models/Keep.js";
 
 export default {
-
-  props: {
-    keep: {
-      type: Keep,
-      required: true
-    }
-  },
-  setup() {
-    return {}
-  }
+    props: {
+        keep: {
+            type: Keep,
+            required: true
+        }
+    },
+    setup() {
+        return {};
+    },
+    components: { RouterLink }
 }
 </script>
 

@@ -14,14 +14,13 @@
                 </div>
                 <div class="mt-3 inputBox">
                   <div class="font">Group Cover Image</div>
-                  <input type="url" class="bg-grey text-dark" required
-                    aria-required="true" />
+                  <input type="url" class="bg-grey text-dark" required aria-required="true" />
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="mt-3 inputBox">
                   <div class="font">Group Name</div>
-                  <input type="text" class="bg-grey text-dark"  required aria-required="true" />
+                  <input type="text" class="bg-grey text-dark" required aria-required="true" />
                 </div>
               </div>
             </div>
@@ -44,8 +43,8 @@ export default {
   setup() {
 
     return {
-      
-    
+
+
     };
   },
 };
@@ -69,7 +68,7 @@ export default {
 }
 
 .form-Banner {
-  background-image: url(https://i.pinimg.com/564x/ca/db/46/cadb46a6ac190342d8152d4240952333.jpg);
+  /* background-image: url(https://i.pinimg.com/564x/ca/db/46/cadb46a6ac190342d8152d4240952333.jpg); */
   background-position: center;
   background-size: cover;
 }
@@ -143,7 +142,7 @@ export default {
 }
 
 .modal-body {
-  background-image: url(https://images.unsplash.com/photo-1615775642101-402e4d2c0e0f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80);
+  /* background-image: url(https://images.unsplash.com/photo-1615775642101-402e4d2c0e0f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80); */
   background-size: cover;
   background-position: center;
   box-shadow: 1px 1px 10px rgba(243, 236, 236, 0.308);
