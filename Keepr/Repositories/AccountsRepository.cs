@@ -38,7 +38,8 @@ public class AccountsRepository
             UPDATE accounts
             SET 
               name = @Name,
-              picture = @Picture
+              picture = @Picture,
+              coverImg = @CoverImg
             WHERE id = @Id;";
     _db.Execute(sql, update);
     return update;
@@ -61,7 +62,7 @@ public class AccountsRepository
     {
       keep.Creator = profile;
       return keep;
-    }, new {accountId }).ToList();
+    }, new { accountId }).ToList();
   }
 
   internal List<Vault> GetMyVaults(string accountId)

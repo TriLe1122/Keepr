@@ -36,7 +36,7 @@ public class AccountController : ControllerBase
     try
     {
       var userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
-     List<Vault> myVaults = _accountService.GetMyVaults(userInfo?.Id);
+      List<Vault> myVaults = _accountService.GetMyVaults(userInfo?.Id);
 
       return Ok(myVaults);
 
@@ -65,17 +65,17 @@ public class AccountController : ControllerBase
   }
 
 
-  [HttpPut()]
+  [HttpPut]
   [Authorize]
-  public async Task<ActionResult<Account>> Edit([FromBody] Account accountData, string accountId)
+  public async Task<ActionResult<Account>> Edit([FromBody] Account accountData)
   {
     try
     {
       Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
       // accountData.Creator = userInfo;
       // accountData.CreatorId = userInfo.Id;
-      accountData.Id = accountId;
-      Account keep = _accountService.Edit(accountData, userInfo.Id);
+      accountData.Email = userInfo.Email;
+      Account keep = _accountService.Edit(accountData, accountData.Email);
       return Ok(keep);
     }
     catch (Exception e)
