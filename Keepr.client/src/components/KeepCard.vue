@@ -3,7 +3,7 @@
     <i class="mdi mdi-close text-white bg-danger rounded-circle selectable on-hover text-center" @click="removeKeep()"  v-if="keep.creator.id == account.id"></i>
     <img :src="keep?.img" class="card-img img-fluid" alt="...">
     <div class="card-img-overlay align-items-end d-flex justify-content-between">
-      <h5 class="card-title" @click="getKeepDetails()" data-bs-toggle="modal" data-bs-target="#keep-modal">{{ keep?.name
+      <h5 class="card-title text-shadow" @click="getKeepDetails()" data-bs-toggle="modal" data-bs-target="#keep-modal">{{ keep?.name
       }}</h5>
       <img :src="keep.creator?.picture" class="person rounded-circle" alt="" height="40" width="40" :title="keep.creator?.name">
       <!-- <button class="btn btn-danger rounded-circle on-hover" @click="removeKeep()"
@@ -72,7 +72,7 @@ export default {
 
 i {
   position: absolute;
-  top: -.5rem;
+  top: -.25rem;
   right: 0;
   height: 20px;
   width: 20px;

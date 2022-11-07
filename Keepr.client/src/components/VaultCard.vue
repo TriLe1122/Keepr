@@ -8,7 +8,7 @@
     <div class="align-items-end d-flex text-light">
 
       <router-link :to="{ name: 'Vault', params: { id: vault.id } }">
-        <h5>{{vault.name}}</h5>
+        <h5 class="text-shadow">{{vault.name}}</h5>
       </router-link>
 
     </div>

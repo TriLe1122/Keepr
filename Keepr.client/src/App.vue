@@ -20,6 +20,10 @@
     <CreateVaultModal />
   </ModalComponent>
 
+  <ModalComponent id="edit-account-modal">
+    <EditAccountModal />
+  </ModalComponent>
+
 </template>
 
 <script>
@@ -32,6 +36,7 @@ import Navbar from './components/Navbar.vue'
 import CreateVaultModal from "./components/CreateVaultModal.vue"
 import Pop from "./utils/Pop.js"
 import { accountService } from "./services/AccountService.js"
+import EditAccountModal from "./components/EditAccountModal.vue"
 
 export default {
   setup() {
@@ -52,7 +57,7 @@ export default {
       keep: computed(() => AppState.activeKeep)
     }
   },
-  components: { Navbar, ModalComponent, KeepModal, CreateKeepModal, CreateVaultModal }
+  components: { Navbar, ModalComponent, KeepModal, CreateKeepModal, CreateVaultModal, EditAccountModal }
 }
 </script>
 <style lang="scss">

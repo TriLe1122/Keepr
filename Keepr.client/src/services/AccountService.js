@@ -3,6 +3,7 @@ import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 import { Vault } from "../models/Vault.js"
 import { Keep } from "../models/Keep.js"
+import { Account } from "../models/Account.js"
 
 class AccountService {
   async getAccount() {
@@ -27,6 +28,13 @@ class AccountService {
     AppState.keeps = res.data.map(k => new Keep(k))
     console.log(AppState.keeps);
   }
+
+  async editAccount(formData) {
+    const res = await api.put('/account', formData)
+    AppState.account = new Account(res.data)
+    Pop.success('good for you, morty')
+  }
+
 }
 
 export const accountService = new AccountService()

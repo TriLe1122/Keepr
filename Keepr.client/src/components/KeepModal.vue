@@ -100,6 +100,7 @@ export default {
           }
 
           await vaultsService.addToVault(data)
+          Pop.success(`Added to your vault!`)
         } catch (error) {
           console.error('[]', error)
           Pop
