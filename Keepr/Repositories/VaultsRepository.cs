@@ -12,8 +12,8 @@ public class VaultsRepository : BaseRepository
   {
     var sql = @"
               INSERT INTO
-              vaults (name, description, img, creatorId)
-              VALUES (@Name, @Description, @Img, @CreatorId);
+              vaults (name, description, img, isPrivate, creatorId)
+              VALUES (@Name, @Description, @Img, @IsPrivate, @CreatorId);
               SELECT LAST_INSERT_ID()
                   ; ";
     vaultData.CreatedAt = DateTime.Now;

@@ -40,10 +40,7 @@ public class VaultsController : ControllerBase
     try
     {
       Account userInfo = await _auth0provider.GetUserInfoAsync<Account>(HttpContext);
-      if (userInfo == null || userInfo.Id == null)
-      {
-        throw new Exception("You are a bad user..... or your token is crappy... 🤷‍♂️");
-      }
+
 
       Vault vault = _vs.GetVaultById(vaultId, userInfo?.Id);
       return Ok(vault);

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-white bg-white px-3 d-flex justify-content-between elevation-3 ">
+  <nav class="navbar navbar-expand-lg   px-3 d-flex justify-content-between elevation-3 ">
     <div class="d-flex">
       <router-link class="" :to="{ name: 'Home' }">
         <button class="button btn border border-3 me-3 hover">Home</button>
@@ -9,6 +9,7 @@
           aria-expanded="false">
           Create
         </button>
+
         <ul class="dropdown-menu text-center p-0">
           <li data-bs-toggle="modal" data-bs-target="#create-keep-modal">new keep</li>
           <li>
@@ -16,14 +17,21 @@
           </li>
           <li data-bs-toggle="modal" data-bs-target="#create-vault-modal">new vault</li>
         </ul>
+
       </div>
     </div>
+
+
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="src\assets\img\Keepr logo.png" class="bg-white" height="45" />
+        <img alt="logo" src="src\assets\img\Keepr logo.png" class="bg-white" height="60" />
       </div>
     </router-link>
+
+
     <Login class="hover" />
+
+
   </nav>
 </template>
 
@@ -50,6 +58,7 @@ a:hover {
   border-bottom: 2px solid var(--bs-success);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  background: #FEF6F0;
 }
 
 @media screen and (min-width: 768px) {

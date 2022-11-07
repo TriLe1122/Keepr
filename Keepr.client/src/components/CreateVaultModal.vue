@@ -48,6 +48,7 @@ export default {
       editable,
       async createVault() {
         try {
+          console.log(editable.value, 'editable');
           await vaultsService.createVault(editable.value)
           Modal.getOrCreateInstance('#create-keep-modal').hide()
         } catch (error) {
