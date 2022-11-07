@@ -16,6 +16,10 @@
   <CreateKeepModal/>
 </ModalComponent>
 
+<ModalComponent id="create-vault-modal">
+  <CreateVaultModal />
+</ModalComponent>
+
 </template>
 
 <script>
@@ -25,6 +29,7 @@ import KeepModal from "./components/KeepModal.vue"
 import CreateKeepModal from "./components/CreateKeepModal.vue"
 import ModalComponent from "./components/ModalComponent.vue"
 import Navbar from './components/Navbar.vue'
+import CreateVaultModal from "./components/CreateVaultModal.vue"
 
 export default {
   setup() {
@@ -33,7 +38,7 @@ export default {
       keep: computed(() => AppState.activeKeep)
     }
   },
-  components: { Navbar, ModalComponent, KeepModal, CreateKeepModal }
+  components: { Navbar, ModalComponent, KeepModal, CreateKeepModal, CreateVaultModal }
 }
 </script>
 <style lang="scss">

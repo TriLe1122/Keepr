@@ -6,7 +6,7 @@
   </div>
 
 <section class="container vaults">
-  <div class="d-flex my-5">
+  <div class="d-flex">
     <div v-for="v in vaults" :key="v.id">
       <VaultCard :vault="v" />
     </div>
@@ -73,8 +73,9 @@ img {
 }
 
 .vaults{
-  height: 30rem;
-  overflow: auto;
+  /* height: 30rem; */
+  width: 80vw;
+ /* overflow-y: scroll; */
   overflow-y: hidden;
 }
 

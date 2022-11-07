@@ -14,7 +14,7 @@
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li>new vault</li>
+          <li data-bs-toggle="modal" data-bs-target="#create-vault-modal">new vault</li>
         </ul>
       </div>
     </div>
