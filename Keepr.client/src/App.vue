@@ -48,9 +48,9 @@ export default {
         Pop.error(error)
       }
     }
-    onMounted(() => {
-      getAccountVaults()
-    })
+    // onMounted(() => {
+    //   getAccountVaults()
+    // })
 
     return {
       appState: computed(() => AppState),
