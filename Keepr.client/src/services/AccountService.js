@@ -1,6 +1,8 @@
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
+import { Vault } from "../models/Vault.js"
+import { Keep } from "../models/Keep.js"
 
 class AccountService {
   async getAccount() {
@@ -10,6 +12,20 @@ class AccountService {
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
+  }
+
+  async getAccountVaults() {
+    const res = await api.get("account/vaults")
+    // console.log(res.data);
+    AppState.vaults = res.data.map(v => new Vault(v))
+    console.log(AppState.vaults);
+  }
+
+  async getAccountKeeps() {
+    const res = await api.get("account/keeps")
+    // console.log(res.data);
+    AppState.keeps = res.data.map(k => new Keep(k))
+    console.log(AppState.keeps);
   }
 }
 

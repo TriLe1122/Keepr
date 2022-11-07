@@ -19,6 +19,11 @@ public class VaultsService
   internal Vault GetVaultById(int vaultId, string userId)
   {
     Vault vault = _vaultsRepo.GetVaultById(vaultId);
+    if (vault.Id == 0)
+    {
+      throw new Exception("not your vault");
+    }
+
     if (vault == null)
     {
       throw new Exception("Bad Vault Id");
@@ -27,7 +32,7 @@ public class VaultsService
     {
       if (vault.CreatorId != userId)
       {
-        throw new Exception("skdjfhlkjsf");
+        throw new Exception("Bad Vault Idsfgsdgsdgsdgfsdgsfdgd");
       }
     }
     return vault;
@@ -35,11 +40,13 @@ public class VaultsService
 
   internal Vault EditVault(Vault vault, string userId)
   {
+
     var original = GetVaultById(vault.Id, userId);
-    if (vault.CreatorId != userId)
+    if (original.CreatorId != userId)
     {
       throw new Exception("Unauthorized To Edit This Keep");
     }
+
 
     original.Name = vault.Name ?? original.Name;
     original.Img = vault.Img ?? original.Img;
@@ -61,9 +68,12 @@ public class VaultsService
     _vaultsRepo.DeleteVault(vaultId);
   }
 
+ 
+
   internal List<KeepInVault> GetKeepsByVaultId(int vaultId, string id)
   {
     Vault vault = GetVaultById(vaultId, id);
+
     List<KeepInVault> keeps = _vkRepo.GetKeepsByVaultId(vaultId);
     return keeps;
 

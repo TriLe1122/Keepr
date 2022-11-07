@@ -32,11 +32,14 @@ public class VaultsRepository : BaseRepository
                 JOIN accounts a ON a.id = v.creatorId
                 WHERE v.id = @vaultId
                      ;";
-    return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
+    return   _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
     {
       vault.Creator = profile;
       return vault;
     }, new { vaultId }).FirstOrDefault();
+
+
+  
   }
 
   internal Vault EditVault(Vault data)

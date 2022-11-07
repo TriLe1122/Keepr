@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-white bg-white px-3 d-flex justify-content-between elevation-3 fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-white bg-white px-3 d-flex justify-content-between elevation-3 ">
     <div class="d-flex">
       <router-link class="" :to="{ name: 'Home' }">
         <button class="button btn border border-3 me-3 hover">Home</button>

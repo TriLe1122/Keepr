@@ -52,7 +52,7 @@ export default {
       getProfileVaults()
     })
     return {
-      profile: computed(() => AppState.profile)
+      profile: computed(() => AppState.activeProfile)
     }
   }
 }
