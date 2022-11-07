@@ -17,7 +17,7 @@ class VaultsService {
   async removeVault(id) {
     const res = await api.delete(`/api/vaults/${id}`)
     if (res) {
-      router.push({ name: 'Home' })
+      router.push({ name: 'Account' })
 
     }
     // AppState.activeVault = AppState.activeVault.filter()
@@ -45,6 +45,7 @@ class VaultsService {
   async addToVault(vaultData) {
     console.log(vaultData);
     const res = await api.post(`api/vaultkeeps`, vaultData)
+    AppState.activeKeep.kept++
     console.log(res.data);
   }
 }

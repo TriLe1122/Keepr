@@ -24,7 +24,7 @@
 
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="src\assets\img\Keepr logo.png" class="bg-white" height="60" />
+        <img alt="logo" src="src\assets\img\Keepr logo.png" class="m-auto" height="60" />
       </div>
     </router-link>
 

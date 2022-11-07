@@ -23,7 +23,7 @@
         <div class="d-flex justify-content-end justify-content-between">
           <!-- <AddKeepToVault/> -->
 
-          <form @submit.prevent="addToVault()">
+          <form @submit.prevent="addToVault()" v-if="!routeAccount">
             <div class="d-flex">
               <select class="form-select " v-model="editable" >
                 <option v-for="v in vaults" :value="v"><a class="dropdown-item" placeholder="Add to Vault">
@@ -33,6 +33,14 @@
               <button class="btn save border-0" type="submit">save</button>
             </div>
           </form>
+
+          <i ></i>
+
+
+
+
+
+
           <div class="d-flex me-3 mb-1">
             <router-link :to="{ name: 'Profile', params: { id: keep.creator.id } }">
               <img :src="keep.creator.picture" alt="" class="rounded-circle mx-2 mb-2" height="40" width="40"
@@ -63,7 +71,7 @@
 <script>
 
 import { computed } from "@vue/reactivity";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
 import { AppState } from "../AppState.js";
 import { Keep } from "../models/Keep.js";
 import AddKeepToVault from "./AddKeepToVault.vue";
@@ -80,9 +88,11 @@ export default {
   },
   setup() {
     const editable = ref({});
+  const route = useRoute()
     return {
       editable,
       vaults: computed(() => AppState.vaults),
+      routeAccount: computed(() => route.name.includes('Account')),
       async addToVault() {
         try {
           let data = {
