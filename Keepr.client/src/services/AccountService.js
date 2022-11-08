@@ -32,7 +32,6 @@ class AccountService {
   async editAccount(formData) {
     const res = await api.put('/account', formData)
     AppState.account = new Account(res.data)
-    Pop.success('good for you, morty')
   }
 
 }

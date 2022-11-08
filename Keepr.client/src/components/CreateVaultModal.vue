@@ -4,28 +4,32 @@
 
     <div class="row">
       <div class="col-md-6">
-
+        <div class="d-flex justify-content-between">
+          <h2 class="mb-5 ms-3">Add your keep</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
         <form @submit.prevent="createVault()">
-          <div class="form-floating mb-3">
+          <div class="form mb-3">
             <input v-model="editable.name" required type="text" class="form-control" id="VaultName"
-              placeholder="Name...">
-            <label for="reportTitle">Report Title</label>
+              placeholder="Title...">
+
           </div>
-          <div class="form-floating mb-3">
+          <div class="form mb-3">
             <textarea v-model="editable.description" required type="text" class="form-control" id="vaultDescription"
               placeholder="Description...">
           </textarea>
-            <label for="reportBody">Report Body</label>
+            <!-- <label for="reportBody">Report Body</label> -->
           </div>
 
 
           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" v-model="editable.isPrivate">
           <label class="form-check-label" for="flexCheckDefault">
-            IS PRIVATE
+            <p class="ms-1"> Make Vault Private? </p>
+
           </label>
 
 
-          <label for="reportRating" class="form-label">Rating:</label>
+          <!-- <label for="reportRating" class="form-label">Rating:</label> -->
           <input v-model="editable.img" type="url" class="form-control" id="reportRating">
           <button type="submit" class="btn btn-primary">Save changes</button>
         </form>
@@ -36,7 +40,7 @@
         <p class="text-shadow fs-3 d-flex  justify-content-center">{{ editable.name }}</p>
         <i class="mdi mdi-lock fs-4 d-flex  justify-content-end" v-if="editable.isPrivate == true"></i>
 
-        <p>{{editable.description}}</p>
+        <p>{{ editable.description }}</p>
       </div>
     </div>
 

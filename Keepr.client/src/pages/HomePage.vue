@@ -33,7 +33,8 @@ export default {
     });
     return {
       keeps: computed(() => AppState.keeps),
-      activeKeep: computed(() => AppState.activeKeep)
+      activeKeep: computed(() => AppState.activeKeep),
+      account: computed(() => AppState.account)
     };
   },
   components: { KeepCard }

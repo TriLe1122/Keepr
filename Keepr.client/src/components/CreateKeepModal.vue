@@ -2,31 +2,46 @@
   <div class="modal-body">
     <div class="row">
       <div class="col-md-6">
-
-        <form @submit.prevent="createKeep()">
-          <div class="form-floating mb-3">
+        <div class="d-flex justify-content-between">
+          <h2 class="mb-5 ms-3">Add your keep</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form @submit.prevent="createKeep()" class="d-flex flex-column justify-content-between ms-2 p-3">
+          <div class="form mb-3">
             <input v-model="editable.name" required type="text" class="form-control" placeholder="Title...">
-            <label for="reportTitle">Keep Name</label>
+            <!-- <label for="reportTitle" placeholder="Title...">Title...</label> -->
           </div>
-          <div class="form-floating mb-3">
-            <textarea v-model="editable.description" required type="text" class="form-control" placeholder="Body...">
+          <div class="form mb-3">
+            <textarea v-model="editable.description" required type="text" class="form-control"
+              placeholder="Keep Description...">
           </textarea>
-            <label for="reportBody">Description</label>
+            <!-- <label for="reportBody">Description</label> -->
           </div>
-          <label for="reportRating" class="form-label">Image!</label>
-          <input v-model="editable.img" type="url" class="form-control">
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <label for="reportRating" class="form-label"></label>
+          <input v-model="editable.img" type="url" class="form-control" placeholder="Image URL...">
+          <div class="d-flex justify-content-end align-items-end mt-5">
+            <button type="submit" class="btn btn-dark mt-5">Create</button>
+          </div>
         </form>
       </div>
-      <div class="col-md-6 input-image rounded d-flex" :style="{ backgroundImage: `url(${editable.img})` }">
-        <!-- <img :src="editable.img" alt=""> -->
-        <p class="text-white d-flex align-items-end">{{editable.name}}</p>
-      </div>
+
+
+
+        <div class="col-md-6 input-image rounded d-flex text-shadow elevation-5"
+          :style="{ backgroundImage: `url(${editable.img})` }">
+          <div class="row">
+            <p class="p-5">{{ editable.description }}</p>
+            <div class="col-md-6  d-flex align-items-end">
+              <h4 class="text-white fs-1">{{ editable.name }}</h4>
+            </div>
+          </div>
+        </div>
+
+
+
+
     </div>
-
   </div>
-
-
 </template>
 
 
@@ -60,12 +75,10 @@ export default {
 
 
 <style lang="scss" scoped>
-
-.input-image{
+.input-image {
   object-fit: cover;
   background-size: cover;
   background-position: center;
   height: 30rem;
 }
-
 </style>

@@ -5,7 +5,7 @@
     <div class="card-img-overlay align-items-end d-flex justify-content-between">
       <h5 class="card-title text-shadow" @click="getKeepDetails()" data-bs-toggle="modal" data-bs-target="#keep-modal">{{ keep?.name
       }}</h5>
-      <img :src="keep.creator?.picture" class="person rounded-circle" alt="" height="40" width="40" :title="keep.creator?.name">
+      <img :src="keep.creator?.picture" class="person rounded-circle" alt="" height="40" width="40" :title="keep.creator?.name" >
       <!-- <button class="btn btn-danger rounded-circle on-hover" @click="removeKeep()"
         v-if="keep.creator.id == account.id">x</button> -->
     </div>
@@ -22,6 +22,7 @@ import Pop from "../utils/Pop.js";
 import { Keep } from "../models/Keep.js";
 import { keepsService } from "../services/KeepsService.js";
 import { vaultsService } from "../services/VaultsService.js";
+
 
 export default {
   props: {
@@ -41,6 +42,7 @@ export default {
     return {
       editable,
       account: computed(() => AppState.account),
+
       async getKeepDetails() {
         try {
           await keepsService.getKeepDetails(props.keep.id);
