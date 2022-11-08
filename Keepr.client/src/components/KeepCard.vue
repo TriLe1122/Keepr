@@ -21,6 +21,7 @@ import { logger } from "../utils/Logger.js"
 import Pop from "../utils/Pop.js";
 import { Keep } from "../models/Keep.js";
 import { keepsService } from "../services/KeepsService.js";
+import { vaultsService } from "../services/VaultsService.js";
 
 export default {
   props: {
@@ -58,6 +59,16 @@ export default {
           console.error('[]', error)
           Pop.error(error)
         }
+      },
+
+
+      async getKeptKeepDetails() {
+        try {
+            await vaultsService.getKeptKeepDetails()
+          } catch (error) {
+            console.error('[]',error)
+            Pop.error(error)
+          }
       }
 
     }

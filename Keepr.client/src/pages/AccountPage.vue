@@ -86,11 +86,11 @@ export default {
 <style scoped>
 .cover {
   /* background-image: url(https://images.unsplash.com/photo-1502394202744-021cfbb17454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=983&q=80); */
-  background-size: contain;
+  background-size: auto;
   height: 25rem;
   background-position: center;
   background-attachment: fixed;
-  object-fit: fill;
+  /* object-fit: fill; */
   position: relative;
 }
 

@@ -57,7 +57,9 @@ export default {
         await vaultsService.setVaultActive(route.params.id)
       } catch (error) {
         console.error('[]', error)
-        Pop.error(error)
+        Pop.error(error, "Private Vault, Stay Out")
+        router.push({ name: 'Home' })
+        AppState.activeVault = null
       }
     }
 
@@ -67,9 +69,19 @@ export default {
       setVaultActive()
     })
 
+    watchEffect(() => {
+      if (AppState.activeVault?.isPrivate) {
+        if (AppState.activeVault.creator.id != AppState.account.id) {
+          router.push({name: 'Home'})
+        }
+      }
+    })
+
     return {
       vault: computed(() => AppState.activeVault),
-      keeps: computed(() => AppState.keptKeeps),
+      keeps: computed(() => AppState.keeps),
+      user: computed(() => AppState.user),
+      account: computed(() => AppState.account),
       async removeVault() {
         try {
           if (await Pop.confirm())
@@ -87,7 +99,7 @@ export default {
 
 <style lang="scss" scoped>
 .cover{
-  background-size: cover;
+  background-size:contain;
   background-position: center;
 background-attachment: fixed;
 }

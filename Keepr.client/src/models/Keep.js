@@ -10,6 +10,11 @@ export class Keep {
     this.views = data.views
     this.kept = data.kept
 
+
+    this.vaultId = data.vaultId
+    this.vaultKeepId = data.vaultKeepId
+
+
     this.createdAt = data.createdAt
     this.updatedAt = data.updatedAt
     this.creator = new Account(data.creator)

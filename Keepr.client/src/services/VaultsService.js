@@ -14,10 +14,10 @@ class VaultsService {
   async getKeepsInVault(id) {
     const res = await api.get(`api/vaults/${id}/keeps`)
     console.log(res.data ,"keeps in vault");
-    AppState.keptKeeps = res.data.map(k => new KeptKeep(k))
+    AppState.keeps = res.data.map(k => new Keep(k))
 
 
-    console.log(AppState.keptKeeps);
+    console.log(AppState.keeps);
   }
 
   async removeVault(id) {
@@ -43,7 +43,7 @@ class VaultsService {
     // }
     AppState.activeVault = vault
 
-    // console.log(AppState.activeVault);
+    console.log(AppState.activeVault);
 
 
   }

@@ -18,7 +18,7 @@
       </div>
     </div>
     <div>
-      <i class="mdi mdi-lock fs-4"></i>
+      <i class="mdi mdi-lock text-shadow fs-4" v-if="vault.isPrivate"></i>
       <!-- <i class="mdi mdi-lock text-danger" v-if="vault?.isPrivate"></i> -->
 
     </div>
