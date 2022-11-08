@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-body p-0">
+  <div class="modal-body p-0 elevation-5">
     <div class="row rounded-5">
       <div class="col-md-6 pic rounded-start" :style="{ backgroundImage: `url(${keep.img})` }">
         <!-- <img :src="keep.img" alt="" class="img-fluid rounded-start h-100 piccy"> -->
@@ -23,7 +23,7 @@
         <div class="d-flex justify-content-end justify-content-between">
           <!-- <AddKeepToVault/> -->
 
-          <form @submit.prevent="addToVault()" v-if="!routeAccount">
+          <form @submit.prevent="addToVault()">
             <div class="d-flex">
               <select class="form-select " v-model="editable" >
                 <option v-for="v in vaults" :value="v"><a class="dropdown-item" placeholder="Add to Vault">
@@ -34,7 +34,6 @@
             </div>
           </form>
 
-          <i ></i>
 
 
 

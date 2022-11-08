@@ -21,33 +21,35 @@
             <!-- <label for="reportBody">Report Body</label> -->
           </div>
 
+          <div>
+            <p class="private p-0">Private Vaults can only be seen by you</p>
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" v-model="editable.isPrivate">
+            <label class="form-check-label" for="flexCheckDefault">
+              <p class="ms-2"> Make Vault Private? </p>
+            </label>
+          </div>
 
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" v-model="editable.isPrivate">
-          <label class="form-check-label" for="flexCheckDefault">
-            <p class="ms-1"> Make Vault Private? </p>
-
-          </label>
 
 
           <!-- <label for="reportRating" class="form-label">Rating:</label> -->
           <input v-model="editable.img" type="url" class="form-control" id="reportRating">
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-dark">Create Vault</button>
         </form>
 
       </div>
 
-      <div class="col-md-6  rounded-3 text-shadow " :style="{ backgroundImage: `url(${editable.img})` }">
+
+
+      <div class="col-md-6  rounded-3 text-shadow elevation-5" :style="{ backgroundImage: `url(${editable.img})` }">
         <p class="text-shadow fs-3 d-flex  justify-content-center">{{ editable.name }}</p>
         <i class="mdi mdi-lock fs-4 d-flex  justify-content-end" v-if="editable.isPrivate == true"></i>
-
         <p>{{ editable.description }}</p>
       </div>
+
+
     </div>
 
 
-  </div>
-  <div class="modal-footer">
-    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
   </div>
 
 </template>
@@ -84,5 +86,10 @@ export default {
 
 
 <style lang="scss" scoped>
+
+
+.private{
+  font-size: 8pt;
+}
 
 </style>

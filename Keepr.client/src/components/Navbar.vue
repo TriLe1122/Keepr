@@ -4,7 +4,11 @@
       <router-link class="" :to="{ name: 'Home' }">
         <button class="button btn border border-3 me-3 hover">Home</button>
       </router-link>
-      <div class="dropdown">
+
+
+
+
+      <div class="dropdown" v-if="!profilePage">
         <button class="btn btn border border-3 dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown"
           aria-expanded="false">
           Create
@@ -37,9 +41,14 @@
 
 <script>
 import Login from './Login.vue'
+import { useRoute } from "vue-router";
+import { computed } from "@vue/reactivity";
 export default {
   setup() {
-    return {}
+    const route = useRoute()
+    return {
+      profilePage: computed(() => route.name == "Profile")
+    }
   },
   components: { Login }
 }
