@@ -54,6 +54,12 @@ class VaultsService {
     AppState.activeKeep.kept++
     console.log(res.data);
   }
+
+  async editVault(vaultData, id) {
+    const res = await api.put(`api/vaults/${id}`, vaultData)
+    // console.log(res.data);
+    AppState.activeVault = new Vault(res.data)
+  }
 }
 
 export const vaultsService = new VaultsService()

@@ -16,6 +16,17 @@
       </div>
     </section>
 
+
+
+    <div class="dropdown mt-5">
+      <i class="mdi mdi-dots-horizontal fs-1 " type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
+      <ul class="dropdown-menu">
+        <li data-bs-toggle="modal" data-bs-target="#edit-vault-modal">Edit Vault</li>
+        <!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
+        <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+      </ul>
+    </div>
+
     <section class="container">
       <div class="masonry my-5">
         <div v-for="k in keeps" :key="k.id">

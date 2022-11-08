@@ -1,9 +1,12 @@
 <template>
   <div class="container pt-4">
-    <div class="col-8 about text-center cover container rounded-5 " :style="{ backgroundImage: `url(${account.coverImg})` }">
 
+
+
+    <div class="col-8 about text-center cover container rounded-5 "
+      :style="{ backgroundImage: `url(${account.coverImg})` }">
       <div class=" info mb-5">
-        <img class="rounded-circle" height="100" width="100" :src="account.picture" alt="" />
+        <img class="rounded-circle border border-white border-4" height="100" width="150" :src="account.picture " alt="" />
         <h1>{{ account.name }}</h1>
         <p class="fs-1">
           {{ vaults.length }} Vaults | {{ keeps.length }} Keeps
@@ -13,24 +16,22 @@
 
 
     <div class="container-fluid">
-    <div class="dropdown mt-5">
-      <i class="mdi mdi-dots-horizontal fs-1 " type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
-      <ul class="dropdown-menu">
-        <li data-bs-toggle="modal" data-bs-target="#edit-account-modal">Edit Account</li>
-        <!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
-        <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
-      </ul>
-    </div>
-    <section class="container vaults mt-5">
-      <div class="d-flex">
-        <div v-for="v in vaults" :key="v.id">
-          <VaultCard :vault="v" />
-        </div>
+      <div class="dropdown mt-5">
+        <i class="mdi mdi-dots-horizontal fs-1 " type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
+        <ul class="dropdown-menu">
+          <li data-bs-toggle="modal" data-bs-target="#edit-account-modal">Edit Account</li>
+          <!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
+          <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+        </ul>
       </div>
-
-
-    </section>
-</div>
+      <section class="container vaults mt-5">
+        <div class="d-flex">
+          <div v-for="v in vaults" :key="v.id">
+            <VaultCard :vault="v" />
+          </div>
+        </div>
+      </section>
+    </div>
 
     <section class="container">
       <div class="masonry my-5">
@@ -86,7 +87,7 @@ export default {
 <style scoped>
 .cover {
   /* background-image: url(https://images.unsplash.com/photo-1502394202744-021cfbb17454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=983&q=80); */
-  background-size: auto;
+  background-size: cover;
   height: 25rem;
   background-position: center;
   background-attachment: fixed;
@@ -110,7 +111,7 @@ img {
   columns: 4;
 }
 
-.info{
+.info {
   position: absolute;
   transform: translateY(21.4rem) translateX(15rem);
 }
