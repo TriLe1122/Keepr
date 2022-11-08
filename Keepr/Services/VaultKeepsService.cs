@@ -12,13 +12,17 @@ public class VaultKeepsService
     _vs = vs;
   }
 
-  internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData)
+  internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData , string userId)
   {
+    Vault vault = _vs.GetVaultById(vaultKeepData.VaultId, vaultKeepData.CreatorId);
+  if (vault.CreatorId != userId)
+      {
+        throw new Exception("bad");
+      }
+
+
     var cat =  _vkRepo.CreateVaultKeep(vaultKeepData);
-    if (cat.CreatorId != vaultKeepData.CreatorId)
-    {
-      throw new Exception("bad kitty");
-    }
+   
     return cat;
   }
 

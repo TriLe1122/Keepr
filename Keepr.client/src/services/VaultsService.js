@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js";
 import { Keep } from "../models/Keep.js";
+import { KeptKeep } from "../models/KeptKeep.js";
 import { Vault } from "../models/Vault.js";
 import { router } from "../router.js";
 import { api } from "./AxiosService.js"
@@ -12,8 +13,11 @@ class VaultsService {
 
   async getKeepsInVault(id) {
     const res = await api.get(`api/vaults/${id}/keeps`)
-    console.log(res.data);
-    AppState.keeps = res.data.map(k => new Keep(k))
+    console.log(res.data ,"keeps in vault");
+    AppState.keptKeeps = res.data.map(k => new KeptKeep(k))
+
+
+    console.log(AppState.keptKeeps);
   }
 
   async removeVault(id) {
@@ -39,7 +43,7 @@ class VaultsService {
     // }
     AppState.activeVault = vault
 
-    console.log(AppState.activeVault);
+    // console.log(AppState.activeVault);
 
 
   }

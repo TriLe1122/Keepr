@@ -1,22 +1,30 @@
 <template>
   <div class="modal-body">
-    <form @submit.prevent="createKeep()">
-      <div class="form-floating mb-3">
-        <input v-model="editable.name" required type="text" class="form-control" 
-          placeholder="Title...">
-        <label for="reportTitle">Report Title</label>
-      </div>
-      <div class="form-floating mb-3">
-        <textarea v-model="editable.description" required type="text" class="form-control" 
-          placeholder="Body...">
+    <div class="row">
+      <div class="col-md-6">
+
+        <form @submit.prevent="createKeep()">
+          <div class="form-floating mb-3">
+            <input v-model="editable.name" required type="text" class="form-control" placeholder="Title...">
+            <label for="reportTitle">Keep Name</label>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea v-model="editable.description" required type="text" class="form-control" placeholder="Body...">
           </textarea>
-        <label for="reportBody">Report Body</label>
+            <label for="reportBody">Description</label>
+          </div>
+          <label for="reportRating" class="form-label">Image!</label>
+          <input v-model="editable.img" type="url" class="form-control">
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
       </div>
-      <label for="reportRating" class="form-label">Rating:</label>
-      <input v-model="editable.img" type="url" class="form-control" >
-      <button type="submit" class="btn btn-primary">Save changes</button>
-    </form>
+      <div class="col-md-6 input-image rounded d-flex" :style="{ backgroundImage: `url(${editable.img})` }">
+        <!-- <img :src="editable.img" alt=""> -->
+        <p class="text-white d-flex align-items-end">{{editable.name}}</p>
+      </div>
     </div>
+
+  </div>
 
 
 </template>
@@ -39,6 +47,7 @@ export default {
         try {
           await keepsService.createKeep(editable.value)
           Modal.getOrCreateInstance('#create-keep-modal').hide()
+          Pop.success("Created a Keep!")
         } catch (error) {
           logger.error(error)
           Pop.error(error.message)
@@ -51,5 +60,12 @@ export default {
 
 
 <style lang="scss" scoped>
+
+.input-image{
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  height: 30rem;
+}
 
 </style>

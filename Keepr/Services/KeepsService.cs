@@ -43,7 +43,7 @@ public class KeepsService
   internal Keep EditKeep(Keep keep, string accountId)
   {
     var original = GetKeepById(keep.Id, accountId);
-    if (keep.CreatorId != accountId)
+    if (original.CreatorId != accountId)
     {
       throw new Exception("Unauthorized To Edit This Keep");
     }
@@ -51,7 +51,7 @@ public class KeepsService
     original.Name = keep.Name ?? original.Name;
     original.Img = keep.Img ?? original.Img;
     original.Description = keep.Description ?? original.Description;
-    original.Views = keep.Views;
+    // original.Views = keep.Views;
 
     var updated = _keepsRepo.EditKeep(original);
     return updated;

@@ -69,7 +69,7 @@ export default {
 
     return {
       vault: computed(() => AppState.activeVault),
-      keeps: computed(() => AppState.keeps),
+      keeps: computed(() => AppState.keptKeeps),
       async removeVault() {
         try {
           if (await Pop.confirm())

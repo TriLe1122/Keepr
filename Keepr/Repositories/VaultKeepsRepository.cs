@@ -60,6 +60,7 @@ public class VaultKeepsRepository : BaseRepository
           SELECT 
             vk.*,
             vk.id AS VaultKeepId,
+            vk.creatorId AS VaultKeepCreatorId,
             k.*,
             a.*
           FROM vaultKeeps vk

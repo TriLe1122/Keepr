@@ -1,45 +1,45 @@
 <template>
-  <div class="about text-center cover container rounded "  :style="{ backgroundImage: `url(${account.coverImg})` }">
-    
-    <div class=" info">
-      <img class="rounded-circle" :src="account.picture" alt="" />
-      <h1>{{ account.name }}</h1>
-      <p class="fs-1">
-        {{ vaults.length }} Vaults | {{ keeps.length }} Keeps
-      </p>
-    </div>
+  <div class="container pt-4">
+    <div class="col-8 about text-center cover container rounded-5 " :style="{ backgroundImage: `url(${account.coverImg})` }">
 
-
-
-  </div>
-
-  <div class="dropdown">
-    <i class="mdi mdi-dots-horizontal fs-1 " type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
-    <ul class="dropdown-menu">
-      <li data-bs-toggle="modal" data-bs-target="#edit-account-modal">Edit Account</li>
-      <!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
-      <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
-    </ul>
-  </div>
-  <section class="container vaults">
-    <div class="d-flex">
-      <div v-for="v in vaults" :key="v.id">
-        <VaultCard :vault="v" />
+      <div class=" info mb-5">
+        <img class="rounded-circle" height="100" width="100" :src="account.picture" alt="" />
+        <h1>{{ account.name }}</h1>
+        <p class="fs-1">
+          {{ vaults.length }} Vaults | {{ keeps.length }} Keeps
+        </p>
       </div>
     </div>
 
 
-  </section>
-
-
-  <section class="container">
-    <div class="masonry my-5">
-      <div v-for="k in keeps" :key="k.id">
-        <KeepCard :keep="k" />
-      </div>
+    <div class="container-fluid">
+    <div class="dropdown mt-5">
+      <i class="mdi mdi-dots-horizontal fs-1 " type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
+      <ul class="dropdown-menu">
+        <li data-bs-toggle="modal" data-bs-target="#edit-account-modal">Edit Account</li>
+        <!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
+        <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+      </ul>
     </div>
-  </section>
+    <section class="container vaults mt-5">
+      <div class="d-flex">
+        <div v-for="v in vaults" :key="v.id">
+          <VaultCard :vault="v" />
+        </div>
+      </div>
 
+
+    </section>
+</div>
+
+    <section class="container">
+      <div class="masonry my-5">
+        <div v-for="k in keeps" :key="k.id">
+          <KeepCard :keep="k" />
+        </div>
+      </div>
+    </section>
+  </div>
 
 </template>
 
@@ -91,7 +91,7 @@ export default {
   background-position: center;
   background-attachment: fixed;
   object-fit: fill;
-
+  position: relative;
 }
 
 
@@ -108,6 +108,11 @@ img {
 
 .masonry {
   columns: 4;
+}
+
+.info{
+  position: absolute;
+  transform: translateY(21.4rem) translateX(15rem);
 }
 
 @media screen AND (max-width: 768px) {
