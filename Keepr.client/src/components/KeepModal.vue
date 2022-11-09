@@ -14,19 +14,30 @@
 
           <div class="text-center d-flex justify-content-between ">
             <div class="d-flex p-1">
-
             </div>
-            <div class="d-flex">
 
-              <i class="mdi mdi-eye"></i> {{ keep.views }}
-             <i class="mdi mdi-alpha-k-box"></i> {{ keep.kept }}
+            <div class="d-flex gap-3 grey">
+              <div class="d-flex">
+                <i class="mdi mdi-eye fs-3"></i>
+                <p class="mt-2">{{ keep?.views }} </p>
+              </div>
+              <div class="d-flex">
+                <i class="mdi mdi-alpha-k-box fs-3"></i>
+                <p class="mt-2">{{ keeps?.kept }} </p>
+              </div>
             </div>
+
+
             <div class=" me-3">
-              <i class="mdi mdi-close  text-danger fs-3 selectable rounded-3" title="remove keep"  v-if="routeHome" @click="removeKeep()"></i>
+              <div v-if="keep.creator?.id == account?.id">
+                <i class="mdi mdi-close  text-danger fs-3 selectable rounded-3" title="remove keep" v-if="routeHome"
+                  @click="removeKeep()"></i>
+              </div>
+
               <div class="dropdown " v-if="routeVault">
                 <i class="mdi mdi-dots-horizontal fs-1 " type="button" data-bs-toggle="dropdown"
                   aria-expanded="false"></i>
-                <ul class="dropdown-menu" >
+                <ul class="dropdown-menu">
                   <li @click="removeVaultKeep(keep?.vaultKeepId)" class="selectable no-select">Remove From Vault</li>
                   <!-- <li @click="removeVaultKeep(keep?.vaultKeepId)">Remove From Vault</li> -->
 
@@ -47,7 +58,7 @@
           <h4 class="text-center keep-name">
             {{ keep.name }}
           </h4>
-          <p class="p-4">
+          <p class="p-4 grey description">
             {{ keep.description }}
           </p>
         </div>
@@ -124,7 +135,8 @@ export default {
     return {
       editable,
       vaults: computed(() => AppState.vaults),
-
+      account: computed(() => AppState.account),
+      keeps: computed(() => AppState.activeKeep),
       routeAccount: computed(() => route.name.includes('Account')),
       routeVault: computed(() => route.name.includes('Vault')),
       routeHome: computed(() => route.name.includes('Home')),
@@ -157,7 +169,7 @@ export default {
       async removeKeep() {
         try {
           if (await Pop.confirm()) {
-            await keepsService.removeKeep(props.keep.id)
+            await keepsService.removeKeep(AppState.activeKeep.id)
             Modal.getOrCreateInstance('#keep-modal').hide()
           }
         } catch (error) {
@@ -179,6 +191,14 @@ export default {
   font-weight: 400;
   font-size: 48px;
   line-height: 64px;
+}
+
+.description {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 175%;
 }
 
 .name {

@@ -1,7 +1,7 @@
 <template>
-  <div class="card text-bg-dark border-0 my-3 elevation-5 selectable hover" @click="getKeepDetails()" data-bs-toggle="modal" data-bs-target="#keep-modal">
-    <i class="mdi mdi-close text-white bg-danger rounded-circle selectable on-hover text-center" @click="removeKeep()"  v-if="keep.creator.id == account.id"></i>
-    <img :src="keep?.img" class="card-img img-fluid " alt="...">
+  <div class="card text-bg-warning border-0 my-3 elevation-5 selectable hover " @click="getKeepDetails()" :title="keep?.name" data-bs-toggle="modal" data-bs-target="#keep-modal">
+    <i class="mdi mdi-close text-white bg-danger rounded-circle selectable on-hover text-center" @click="removeKeep()"  v-if="keep.creator?.id == account?.id"></i>
+    <img :src="keep?.img" class="card-img  rounded-4" alt="..." >
     <div class="card-img-overlay align-items-end d-flex justify-content-between">
       <h5 class="card-title text-shadow" >{{ keep?.name
       }}</h5>
@@ -95,8 +95,11 @@ i {
   z-index: 9999;
 }
 
-
-
-
-
+.card-title{
+  font-family: 'Marko One';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 29px;
+}
 </style>

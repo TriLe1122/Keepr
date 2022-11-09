@@ -7,7 +7,7 @@
       :style="{ backgroundImage: `url(${account.coverImg})` }">
       <div class=" info mb-5">
         <img class="rounded-circle border border-white border-4" height="100" width="150" :src="account.picture " alt="" />
-        <h1>{{ account.name }}</h1>
+        <p class="name">{{ account.name }}</p>
         <p class="fs-1">
           {{ vaults.length }} Vaults | {{ keeps.length }} Keeps
         </p>
@@ -90,11 +90,14 @@ export default {
   background-size: cover;
   height: 25rem;
   background-position: center;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   /* object-fit: fill; */
   position: relative;
 }
 
+.name{
+  font-weight: 400;
+}
 
 img {
   max-width: 100px;
@@ -115,6 +118,11 @@ img {
   position: absolute;
  margin-top: 22rem;
  margin-left: 16rem;
+font-family: 'Oxygen';
+  font-style: normal;
+  /* font-weight: 700; */
+  font-size: 48px;
+  line-height: 61px;
 }
 
 @media screen AND (max-width: 768px) {

@@ -99,7 +99,7 @@ export default {
   background-size: cover;
   height: 25rem;
   background-position: center;
-  background-attachment: fixed;
+  // background-attachment: fixed;
   /* object-fit: fill; */
   position: relative;
 }

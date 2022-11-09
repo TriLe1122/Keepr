@@ -59,13 +59,14 @@ public class VaultKeepsRepository : BaseRepository
     var sql = @"
           SELECT 
             vk.*,
+            COUNT(vk.id) AS Kept,
             vk.id AS VaultKeepId,
             vk.creatorId AS VaultKeepCreatorId,
             k.*,
             a.*
           FROM vaultKeeps vk
           JOIN accounts a ON a.id = vk.creatorId
-          Join keeps k On k.id = vk.keepId
+          JOIN keeps k On k.id = vk.keepId
           WHERE vk.vaultId = @vaultId
           GROUP BY vk.id
           ;";

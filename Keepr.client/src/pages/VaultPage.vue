@@ -10,7 +10,16 @@
           <i class="mdi mdi-lock text-shadow fs-4" v-if="vault?.isPrivate"></i>
         </div>
       </div>
+      <div class="dropdown mt-5 d-flex">
+        <i class="mdi mdi-dots-horizontal fs-1 " type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
+        <ul class="dropdown-menu ">
+          <li data-bs-toggle="modal" data-bs-target="#edit-vault-modal" class="selectable">Edit Vault</li>
+          <li @click="removeVault()" class="selectable">Delete Vault</li>
+      
+        </ul>
+      </div>
       <div class="text-center rounded m-3">
+        
         <p class="">
           {{ keeps?.length }} Keeps
         </p>
@@ -19,14 +28,7 @@
 
 
 
-    <div class="dropdown mt-5">
-      <i class="mdi mdi-dots-horizontal fs-1 " type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
-      <ul class="dropdown-menu">
-        <li data-bs-toggle="modal" data-bs-target="#edit-vault-modal">Edit Vault</li>
-        <!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
-        <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
-      </ul>
-    </div>
+    
 
     <section class="container">
       <div class="masonry my-5">
@@ -39,8 +41,6 @@
 
 
   </div>
-
-  <button class="btn btn-danger" @click="removeVault()">remove vault</button>
 </template>
 
 
@@ -113,7 +113,7 @@ export default {
 .cover{
   background-size:cover;
   background-position: center;
-background-attachment: fixed;
+// background-attachment: fixed;
 height: 25rem;
 object-fit: fill;
 }

@@ -59,6 +59,10 @@ a:hover {
   text-decoration: none;
 }
 
+nav{
+  background-color: #FEF6F0;
+}
+
 .nav-link {
   text-transform: uppercase;
 }
