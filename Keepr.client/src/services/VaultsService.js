@@ -60,6 +60,14 @@ class VaultsService {
     // console.log(res.data);
     AppState.activeVault = new Vault(res.data)
   }
+
+
+  async removeVaultKeep(id) {
+    const res = await api.delete(`api/vaultkeeps/${id}`)
+    console.log(res.data);
+
+    AppState.keeps = AppState.keeps.filter(k => k.id !== id)
+  }
 }
 
 export const vaultsService = new VaultsService()

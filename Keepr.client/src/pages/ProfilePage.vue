@@ -14,14 +14,7 @@
 
 
     <div class="container-fluid">
-      <div class="dropdown mt-5">
-        <i class="mdi mdi-dots-horizontal fs-1 " type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
-        <ul class="dropdown-menu">
-          <li data-bs-toggle="modal" data-bs-target="#edit-account-modal">Edit Account</li>
-          <!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
-          <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
-        </ul>
-      </div>
+     
       <section class="container vaults mt-5">
         <div class="d-flex">
           <div v-for="v in vaults" :key="v.id">
@@ -103,7 +96,7 @@ export default {
 <style lang="scss" scoped>
 .cover {
   /* background-image: url(https://images.unsplash.com/photo-1502394202744-021cfbb17454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=983&q=80); */
-  background-size: auto;
+  background-size: cover;
   height: 25rem;
   background-position: center;
   background-attachment: fixed;

@@ -11,10 +11,11 @@ class KeepsService {
     console.log(AppState.keeps);
   }
 
-  async getKeepDetails(id) {
-    const res = await api.get(`api/keeps/${id}`)
+  async getKeepDetails(keep) {
+
+    await api.get(`api/keeps/${keep.id}`)
     // console.log(res.data);
-    AppState.activeKeep = new Keep(res.data)
+    AppState.activeKeep = keep
     if (AppState.keeps.creatorId != AppState.account.id) {
 
       AppState.activeKeep.views++

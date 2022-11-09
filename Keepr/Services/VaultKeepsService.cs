@@ -17,7 +17,7 @@ public class VaultKeepsService
     Vault vault = _vs.GetVaultById(vaultKeepData.VaultId, vaultKeepData.CreatorId);
   if (vault.CreatorId != userId)
       {
-        throw new Exception("bad");
+        throw new Exception("bad vault id");
       }
 
 

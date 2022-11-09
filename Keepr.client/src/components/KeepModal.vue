@@ -1,19 +1,31 @@
 <template>
   <div class="modal-body p-0 elevation-5">
     <div class="row rounded-5">
+
       <div class="col-md-6 pic rounded-start" :style="{ backgroundImage: `url(${keep.img})` }">
         <!-- <img :src="keep.img" alt="" class="img-fluid rounded-start h-100 piccy"> -->
       </div>
 
-      <div class="col-md-6 d-flex flex-column justify-content-between ">
 
-        <div class="text-center mt-4 ">
-          <img alt="logo" src="src\assets\img\Vector (2).png" > {{ keep.views }}
-          <img alt="logo" src="src\assets\img\Logo.png"> {{keep.kept}}
+
+      <div class="col-md-6 d-flex flex-column justify-content-between ">
+        <button class="btn btn-danger" @click="removeVaultKeep(keep?.vaultKeepId)"></button>
+        <div class="">
+          <div class="text-center mt-4 ">
+            <img alt="logo" src="src\assets\img\Vector (2).png"> {{ keep.views }}
+            <img alt="logo" src="src\assets\img\Logo.png"> {{ keep.kept }}
+          </div>
+          
+      
+
+
         </div>
 
+
+
+
         <div class="">
-          <h4 class="text-center">
+          <h4 class="text-center keep-name">
             {{ keep.name }}
           </h4>
           <p class="p-4">
@@ -25,7 +37,7 @@
 
           <form @submit.prevent="addToVault()">
             <div class="d-flex">
-              <select class="form-select " v-model="editable" >
+              <select class="form-select " v-model="editable">
                 <option v-for="v in vaults" :value="v"><a class="dropdown-item" placeholder="Add to Vault">
                     {{ v?.name }}
                   </a></option>
@@ -87,7 +99,7 @@ export default {
   },
   setup() {
     const editable = ref({});
-  const route = useRoute()
+    const route = useRoute()
     return {
       editable,
       vaults: computed(() => AppState.vaults),
@@ -105,6 +117,16 @@ export default {
           Pop
             .error(error)
         }
+      },
+
+      async removeVaultKeep(id) {
+        try {
+          if (await Pop.confirm())
+            await vaultsService.removeVaultKeep(id)
+          } catch (error) {
+            console.error('[]',error)
+            Pop.error(error)
+          }
       }
     };
   },
@@ -114,12 +136,20 @@ export default {
 
 
 <style lang="scss" scoped>
-.name{
-  font-family: 'Oxygen';
+.keep-name{
+  font-family: 'Marko One';
     font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 23px;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 64px;
+}
+
+.name {
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
 }
 
 .pic {

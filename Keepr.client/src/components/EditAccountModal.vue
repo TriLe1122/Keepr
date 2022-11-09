@@ -32,7 +32,7 @@
       <div>
         <img :src="editable.picture" alt="" class="rounded-circle border border-white border-4" height="150"
           width="150">
-        <h4 class="text-center">{{ editable.name }}</h4>
+        <h4 class="text-center my-3">{{ editable.name }}</h4>
       </div>
 
 

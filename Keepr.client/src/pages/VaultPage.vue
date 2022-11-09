@@ -4,9 +4,10 @@
 
     <section class="container mt-3">
       <div class="row justify-content-center">
-        <div class="col-md-8 text-center rounded p-5 text-shadow cover" :style="{ backgroundImage: `url(${vault?.img})` }">
+        <div class="col-md-8 text-center rounded-5 p-5 text-shadow cover" :style="{ backgroundImage: `url(${vault?.img})` }">
           <h1>{{ vault?.name }}</h1>
           <p>by {{ vault?.creator?.name }}</p>
+          <i class="mdi mdi-lock text-shadow fs-4" v-if="vault?.isPrivate"></i>
         </div>
       </div>
       <div class="text-center rounded m-3">
@@ -110,9 +111,11 @@ export default {
 
 <style lang="scss" scoped>
 .cover{
-  background-size:contain;
+  background-size:cover;
   background-position: center;
 background-attachment: fixed;
+height: 25rem;
+object-fit: fill;
 }
 
 .masonry {

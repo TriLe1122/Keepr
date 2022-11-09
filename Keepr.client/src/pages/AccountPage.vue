@@ -113,7 +113,8 @@ img {
 
 .info {
   position: absolute;
-  transform: translateY(21.4rem) translateX(15rem);
+ margin-top: 22rem;
+ margin-left: 16rem;
 }
 
 @media screen AND (max-width: 768px) {
