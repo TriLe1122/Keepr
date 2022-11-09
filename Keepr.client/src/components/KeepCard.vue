@@ -1,9 +1,9 @@
 <template>
-  <div class="card text-bg-dark border-0 my-3 elevation-5  hover">
+  <div class="card text-bg-dark border-0 my-3 elevation-5 selectable hover" @click="getKeepDetails()" data-bs-toggle="modal" data-bs-target="#keep-modal">
     <i class="mdi mdi-close text-white bg-danger rounded-circle selectable on-hover text-center" @click="removeKeep()"  v-if="keep.creator.id == account.id"></i>
     <img :src="keep?.img" class="card-img img-fluid " alt="...">
     <div class="card-img-overlay align-items-end d-flex justify-content-between">
-      <h5 class="card-title text-shadow" @click="getKeepDetails()" data-bs-toggle="modal" data-bs-target="#keep-modal">{{ keep?.name
+      <h5 class="card-title text-shadow" >{{ keep?.name
       }}</h5>
       <img :src="keep.creator?.picture" class="person rounded-circle border border-white border-1" alt="" height="40" width="40" :title="keep.creator?.name" v-if="home">
       <!-- <button class="btn btn-danger rounded-circle on-hover" @click="removeKeep()"
@@ -23,6 +23,7 @@ import { Keep } from "../models/Keep.js";
 import { keepsService } from "../services/KeepsService.js";
 import { vaultsService } from "../services/VaultsService.js";
 import { routeLocationKey, useRoute } from "vue-router";
+import { Modal } from "bootstrap";
 
 
 export default {
@@ -57,6 +58,7 @@ export default {
         try {
           if (await Pop.confirm()) {
             await keepsService.removeKeep(props.keep.id)
+            Modal.getOrCreateInstance('#keep-modal').hide()
           }
         } catch (error) {
           console.error('[]', error)
@@ -86,7 +88,7 @@ export default {
 
 i {
   position: absolute;
-  top: -.25rem;
+  // top: -.25rem;
   right: 0;
   height: 20px;
   width: 20px;

@@ -9,14 +9,33 @@
 
 
       <div class="col-md-6 d-flex flex-column justify-content-between ">
-        <button class="btn btn-danger" @click="removeVaultKeep(keep?.vaultKeepId)"></button>
+        <!-- <button class="btn btn-danger" @click="removeVaultKeep(keep?.vaultKeepId)"></button> -->
         <div class="">
-          <div class="text-center mt-4 ">
-            <img alt="logo" src="src\assets\img\Vector (2).png"> {{ keep.views }}
-            <img alt="logo" src="src\assets\img\Logo.png"> {{ keep.kept }}
+
+          <div class="text-center d-flex justify-content-between ">
+            <div class="d-flex p-1">
+
+            </div>
+            <div class="d-flex">
+
+              <i class="mdi mdi-eye"></i> {{ keep.views }}
+             <i class="mdi mdi-alpha-k-box"></i> {{ keep.kept }}
+            </div>
+            <div class=" me-3">
+              <i class="mdi mdi-close  text-danger fs-3 selectable rounded-3" title="remove keep"  v-if="routeHome" @click="removeKeep()"></i>
+              <div class="dropdown " v-if="routeVault">
+                <i class="mdi mdi-dots-horizontal fs-1 " type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false"></i>
+                <ul class="dropdown-menu" >
+                  <li @click="removeVaultKeep(keep?.vaultKeepId)" class="selectable no-select">Remove From Vault</li>
+                  <!-- <li @click="removeVaultKeep(keep?.vaultKeepId)">Remove From Vault</li> -->
+
+                </ul>
+              </div>
+            </div>
           </div>
-          
-      
+
+
 
 
         </div>
@@ -37,7 +56,7 @@
 
           <form @submit.prevent="addToVault()">
             <div class="d-flex">
-              <select class="form-select " v-model="editable">
+              <select class="form-select border-0" v-model="editable">
                 <option v-for="v in vaults" :value="v"><a class="dropdown-item" placeholder="Add to Vault">
                     {{ v?.name }}
                   </a></option>
@@ -89,6 +108,8 @@ import AddKeepToVault from "./AddKeepToVault.vue";
 import { ref } from "vue"
 import Pop from "../utils/Pop.js";
 import { vaultsService } from "../services/VaultsService.js";
+import { Modal } from "bootstrap";
+import { keepsService } from "../services/KeepsService.js";
 
 export default {
   props: {
@@ -104,6 +125,8 @@ export default {
       editable,
       vaults: computed(() => AppState.vaults),
       routeAccount: computed(() => route.name.includes('Account')),
+      routeVault: computed(() => route.name.includes('Vault')),
+      routeHome: computed(() => route.name.includes('Home')),
       async addToVault() {
         try {
           let data = {
@@ -123,11 +146,24 @@ export default {
         try {
           if (await Pop.confirm())
             await vaultsService.removeVaultKeep(id)
-          } catch (error) {
-            console.error('[]',error)
-            Pop.error(error)
+          Modal.getOrCreateInstance('#edit-vault-modal').hide()
+        } catch (error) {
+          console.error('[]', error)
+          Pop.error(error)
+        }
+      },
+
+      async removeKeep() {
+        try {
+          if (await Pop.confirm()) {
+            await keepsService.removeKeep(props.keep.id)
+            Modal.getOrCreateInstance('#keep-modal').hide()
           }
-      }
+        } catch (error) {
+          console.error('[]', error)
+          Pop.error(error)
+        }
+      },
     };
   },
   components: { RouterLink, AddKeepToVault }
@@ -136,12 +172,12 @@ export default {
 
 
 <style lang="scss" scoped>
-.keep-name{
+.keep-name {
   font-family: 'Marko One';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 48px;
-    line-height: 64px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 64px;
 }
 
 .name {

@@ -12,7 +12,7 @@
       </div>
       <div class="text-center rounded m-3">
         <p class="">
-          {{ keeps.length }} Keeps
+          {{ keeps?.length }} Keeps
         </p>
       </div>
     </section>
@@ -46,7 +46,7 @@
 
 <script>
 import { computed } from "@vue/reactivity";
-import { onMounted, watchEffect } from "vue";
+import { onMounted} from "vue";
 import { useRoute } from "vue-router";
 import { AppState } from "../AppState.js";
 import { router } from "../router.js";
@@ -81,13 +81,13 @@ export default {
       setVaultActive()
     })
 
-    watchEffect(() => {
-      if (AppState.activeVault?.isPrivate) {
-        if (AppState.activeVault.creator.id != AppState.account.id) {
-          router.push({name: 'Home'})
-        }
-      }
-    })
+    // watchEffect(() => {
+    //   if (AppState.activeVault?.isPrivate) {
+    //     if (AppState.activeVault.creator.id != AppState.account.id) {
+    //       router.push({name: 'Home'})
+    //     }
+    //   }
+    // })
 
     return {
       vault: computed(() => AppState.activeVault),

@@ -75,7 +75,7 @@ public class AccountController : ControllerBase
       // accountData.Creator = userInfo;
       // accountData.CreatorId = userInfo.Id;
       accountData.Email = userInfo.Email;
-      Account keep = _accountService.Edit(accountData, accountData.Email);
+      Account keep = _accountService.Edit(accountData, accountData?.Email);
       return Ok(keep);
     }
     catch (Exception e)

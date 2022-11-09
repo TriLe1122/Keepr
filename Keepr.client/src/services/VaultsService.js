@@ -66,7 +66,7 @@ class VaultsService {
     const res = await api.delete(`api/vaultkeeps/${id}`)
     console.log(res.data);
 
-    AppState.keeps = AppState.keeps.filter(k => k.id !== id)
+    AppState.keeps = AppState.keeps.filter(k => k.vaultKeepId != id)
   }
 }
 
