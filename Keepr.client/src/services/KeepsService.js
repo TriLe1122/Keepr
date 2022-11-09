@@ -11,18 +11,32 @@ class KeepsService {
     // console.log(AppState.keeps);
   }
 
+  // async getKeepDetails(keep) {
+
+  //   await api.get(`api/keeps/${keep.id}`)
+  //   // console.log(res.data);
+  //   AppState.activeKeep = keep
+  //   if (keep != AppState.account.id) {
+
+  //     AppState.activeKeep.views++
+  //   }
+    
+  //   // console.log(AppState.activeKeep);
+  // }
   async getKeepDetails(keep) {
-
-    await api.get(`api/keeps/${keep.id}`)
+    let vKId = keep.vaultKeepId
+    const res = await api.get(`api/keeps/${keep.id}`);
     // console.log(res.data);
-    AppState.activeKeep = keep
+    let activeKeep = new Keep(res.data)
+    AppState.activeKeep = activeKeep
+    if (vKId) {
+      AppState.activeKeep.vaultKeepId = vKId
+    }
     if (keep != AppState.account.id) {
-
       AppState.activeKeep.views++
     }
-    
-    // console.log(AppState.activeKeep);
   }
+
 
   async createKeep(data) {
     const res = await api.post("api/keeps", data)
@@ -39,3 +53,5 @@ class KeepsService {
 }
 
 export const keepsService = new KeepsService()
+
+

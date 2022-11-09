@@ -59,6 +59,16 @@ public class KeepsRepository : BaseRepository
     return data;
   }
 
+  internal void IncreaseKept(int id)
+  // TODO refer to above update ... BUT you will only update/set the kepts and add one 
+  {
+    string sql = @"
+    UPDATE keeps SET
+     kepts = kepts+1,
+     WHERE id = @Id
+    ;";
+  }
+
   internal void DeleteKeep(int id)
   {
     var sql = @"

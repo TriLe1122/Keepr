@@ -1,6 +1,7 @@
 <template>
   <header>
-    <Navbar />
+    <Navbar  />
+
   </header>
   <main>
     <router-view />
@@ -42,6 +43,7 @@ import Pop from "./utils/Pop.js"
 import { accountService } from "./services/AccountService.js"
 import EditAccountModal from "./components/EditAccountModal.vue"
 import EditVaultModal from "./components/EditVaultModal.vue"
+
 
 export default {
   setup() {

@@ -23,7 +23,7 @@
               </div>
               <div class="d-flex">
                 <i class="mdi mdi-alpha-k-box fs-3"></i>
-                <p class="mt-2">{{ keeps?.kept }} </p>
+                <p class="mt-2">{{ keep?.kept }} </p>
               </div>
             </div>
 

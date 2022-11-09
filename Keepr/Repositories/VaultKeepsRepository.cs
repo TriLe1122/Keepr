@@ -32,7 +32,7 @@ public class VaultKeepsRepository : BaseRepository
 
   internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData)
   {
-      var sql = @"
+    var sql = @"
               INSERT INTO
               vaultKeeps (creatorId, keepId, vaultId)
               VALUES (@CreatorId, @KeepId, @VaultId);
@@ -59,7 +59,7 @@ public class VaultKeepsRepository : BaseRepository
     var sql = @"
           SELECT 
             vk.*,
-            COUNT(vk.id) AS Kept,
+            COUNT(k.id) AS Kept,
             vk.id AS VaultKeepId,
             vk.creatorId AS VaultKeepCreatorId,
             k.*,
@@ -70,10 +70,10 @@ public class VaultKeepsRepository : BaseRepository
           WHERE vk.vaultId = @vaultId
           GROUP BY vk.id
           ;";
-        return _db.Query<KeepInVault, Profile, KeepInVault>(sql, (keep, profile) =>
-        {
-          keep.Creator= profile;
-          return keep;
-        }, new { vaultId}).ToList();
+    return _db.Query<KeepInVault, Profile, KeepInVault>(sql, (keep, profile) =>
+    {
+      keep.Creator = profile;
+      return keep;
+    }, new { vaultId }).ToList();
   }
 }
