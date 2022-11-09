@@ -20,7 +20,7 @@
       </div>
       <div class="text-center rounded m-3">
         
-        <p class="">
+        <p class="fs-1">
           {{ keeps?.length }} Keeps
         </p>
       </div>

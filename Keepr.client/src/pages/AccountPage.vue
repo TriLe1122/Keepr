@@ -25,6 +25,7 @@
         </ul>
       </div>
       <section class="container vaults mt-5">
+        <h3>Vaults</h3>
         <div class="d-flex">
           <div v-for="v in vaults" :key="v.id">
             <VaultCard :vault="v" />
@@ -33,7 +34,8 @@
       </section>
     </div>
 
-    <section class="container">
+    <section class="container mt-5">
+      <h3>Keeps</h3>
       <div class="masonry my-5">
         <div v-for="k in keeps" :key="k.id">
           <KeepCard :keep="k" />

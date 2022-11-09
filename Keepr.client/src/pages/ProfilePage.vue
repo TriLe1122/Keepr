@@ -4,7 +4,7 @@
       :style="{ backgroundImage: `url(${profile?.coverImg})` }">
 
       <div class=" info mb-5">
-        <img class="rounded-circle" height="100" width="100" :src="profile?.picture" alt="" />
+        <img class="rounded-circle border border-white border-3" height="100" width="100" :src="profile?.picture" alt="" />
         <h1>{{ profile?.name }}</h1>
         <p class="fs-1">
           {{ vaults.length }} Vaults | {{ keeps.length }} Keeps
@@ -12,28 +12,33 @@
       </div>
     </div>
 
+    <div class="stuff">
+      <div class="container-fluid">
 
-    <div class="container-fluid">
-     
-      <section class="container vaults mt-5">
-        <div class="d-flex">
-          <div v-for="v in vaults" :key="v.id">
-            <VaultCard :vault="v" />
+        <section class="container vaults mt-5">
+          <h3>Vaults</h3>
+          <div class="d-flex">
+            <div v-for="v in vaults" :key="v.id">
+              <VaultCard :vault="v" />
+            </div>
+          </div>
+
+
+        </section>
+      </div>
+
+      <section class="container">
+        <h3 class="mt-5">Keeps</h3>
+        <div class="masonry my-3">
+          <div v-for="k in keeps" :key="k.id">
+            <KeepCard :keep="k" />
           </div>
         </div>
-
-
       </section>
     </div>
-
-    <section class="container">
-      <div class="masonry my-5">
-        <div v-for="k in keeps" :key="k.id">
-          <KeepCard :keep="k" />
-        </div>
-      </div>
-    </section>
   </div>
+
+
 
 </template>
 
@@ -53,10 +58,10 @@ export default {
     async function getProfile() {
       try {
         await profilesService.getProfile(route.params.id)
-        } catch (error) {
-          console.error('[]',error)
-          Pop.error(error)
-        }
+      } catch (error) {
+        console.error('[]', error)
+        Pop.error(error)
+      }
     }
 
     async function getProfileVaults() {
@@ -112,6 +117,10 @@ img {
   max-width: 100px;
 }
 
+.stuff{
+  margin-top: 13rem;
+}
+
 .vaults {
   /* height: 30rem; */
   width: 80vw;
@@ -125,8 +134,8 @@ img {
 
 .info {
   position: absolute;
-  margin-top: 20rem;
-  margin-left: 16rem;
+  margin-top: 22rem;
+  margin-left: 13rem;
   font-family: 'Oxygen';
   font-style: normal;
   /* font-weight: 700; */
@@ -141,7 +150,7 @@ img {
 
   .info {
     margin-top: 20rem;
-    margin-left: 0;
+    margin-left: -2.5rem;
   }
 }
 </style>
