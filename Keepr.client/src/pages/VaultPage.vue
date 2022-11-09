@@ -10,7 +10,7 @@
           <i class="mdi mdi-lock text-shadow fs-4" v-if="vault?.isPrivate"></i>
         </div>
       </div>
-      <div class="dropdown mt-5 d-flex">
+      <div class="dropdown mt-5 d-flex" v-if="vault?.creator?.id == account?.id">
         <i class="mdi mdi-dots-horizontal fs-1 " type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
         <ul class="dropdown-menu ">
           <li data-bs-toggle="modal" data-bs-target="#edit-vault-modal" class="selectable">Edit Vault</li>

@@ -4,6 +4,7 @@
 
       <div class="col-md-6 pic rounded-start" :style="{ backgroundImage: `url(${keep.img})` }">
         <!-- <img :src="keep.img" alt="" class="img-fluid rounded-start h-100 piccy"> -->
+        <i class="mdi mdi-close text-danger fs-1 selectable rounded d-md-none d-block" title="close modal" data-bs-dismiss="modal"></i>
       </div>
 
 

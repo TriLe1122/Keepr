@@ -1,14 +1,13 @@
 <template>
   <header>
-    <Navbar  />
+    <Navbar class="desktop"/>
 
   </header>
   <main>
     <router-view />
   </main>
-  <!-- <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
-  </footer> -->
+  <!-- <Navbar class="mobile"/> -->
+ 
   <ModalComponent id="keep-modal">
     <KeepModal :keep="keep" v-if="keep" />
   </ModalComponent>
@@ -83,5 +82,12 @@ footer {
   display: grid;
   place-content: center;
   height: 32px;
+}
+
+
+@media screen AND (max-width: 768px) {
+
+ 
+
 }
 </style>

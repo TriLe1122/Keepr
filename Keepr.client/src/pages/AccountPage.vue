@@ -116,7 +116,7 @@ img {
 
 .info {
   position: absolute;
- margin-top: 22rem;
+ margin-top: 20rem;
  margin-left: 16rem;
 font-family: 'Oxygen';
   font-style: normal;
@@ -128,6 +128,11 @@ font-family: 'Oxygen';
 @media screen AND (max-width: 768px) {
   .masonry {
     columns: 2
+  }
+
+  .info{
+    margin-top: 20rem;
+    margin-left: 0;
   }
 }
 </style>

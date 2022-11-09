@@ -99,11 +99,14 @@ export default {
   background-size: cover;
   height: 25rem;
   background-position: center;
-  // background-attachment: fixed;
+  /* background-attachment: fixed; */
   /* object-fit: fill; */
   position: relative;
 }
 
+.name {
+  font-weight: 400;
+}
 
 img {
   max-width: 100px;
@@ -122,12 +125,23 @@ img {
 
 .info {
   position: absolute;
-  transform: translateY(21.4rem) translateX(15rem);
+  margin-top: 20rem;
+  margin-left: 16rem;
+  font-family: 'Oxygen';
+  font-style: normal;
+  /* font-weight: 700; */
+  font-size: 48px;
+  line-height: 61px;
 }
 
 @media screen AND (max-width: 768px) {
   .masonry {
     columns: 2
+  }
+
+  .info {
+    margin-top: 20rem;
+    margin-left: 0;
   }
 }
 </style>
