@@ -124,6 +124,7 @@ export default {
     return {
       editable,
       vaults: computed(() => AppState.vaults),
+
       routeAccount: computed(() => route.name.includes('Account')),
       routeVault: computed(() => route.name.includes('Vault')),
       routeHome: computed(() => route.name.includes('Home')),

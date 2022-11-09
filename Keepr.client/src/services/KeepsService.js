@@ -8,7 +8,7 @@ class KeepsService {
   async getKeeps() {
     const res = await api.get("api/keeps")
     AppState.keeps = res.data.map(r => new Keep(r))
-    console.log(AppState.keeps);
+    // console.log(AppState.keeps);
   }
 
   async getKeepDetails(keep) {
@@ -20,12 +20,12 @@ class KeepsService {
 
       AppState.activeKeep.views++
     }
-    console.log(AppState.activeKeep);
+    // console.log(AppState.activeKeep);
   }
 
   async createKeep(data) {
     const res = await api.post("api/keeps", data)
-    console.log(res.data);
+    // console.log(res.data);
     AppState.keeps = [new Keep(res.data), ...AppState.keeps]
   }
 

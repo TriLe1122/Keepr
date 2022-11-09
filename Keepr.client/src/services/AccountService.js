@@ -19,14 +19,14 @@ class AccountService {
     const res = await api.get("account/vaults")
     // console.log(res.data);
     AppState.vaults = res.data.map(v => new Vault(v))
-    console.log(AppState.vaults);
+    // console.log(AppState.vaults);
   }
 
   async getAccountKeeps() {
     const res = await api.get("account/keeps")
     // console.log(res.data);
     AppState.keeps = res.data.map(k => new Keep(k))
-    console.log(AppState.keeps);
+    // console.log(AppState.keeps);
   }
 
   async editAccount(formData) {

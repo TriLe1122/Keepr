@@ -8,16 +8,17 @@ import { api } from "./AxiosService.js"
 class VaultsService {
   async createVault(data) {
     const res = await api.post("api/vaults", data)
-    console.log(res.data, 'res');
+    // console.log(res.data, 'res');
+    AppState.keeps = new Keep(res.data)
   }
 
   async getKeepsInVault(id) {
     const res = await api.get(`api/vaults/${id}/keeps`)
-    console.log(res.data ,"keeps in vault");
+    // console.log(res.data ,"keeps in vault");
     AppState.keeps = res.data.map(k => new Keep(k))
 
 
-    console.log(AppState.keeps);
+    // console.log(AppState.keeps);
   }
 
   async removeVault(id) {
@@ -31,7 +32,7 @@ class VaultsService {
 
   async setVaultActive(id) {
     const res = await api.get(`api/vaults/${id}`)
-    console.log(res.data);
+    // console.log(res.data);
     let vault = new Vault(res.data)
     // let userId = AppState.account.id
     // let notOwner = userId == vault.creator.id
@@ -43,16 +44,16 @@ class VaultsService {
     // }
     AppState.activeVault = vault
 
-    console.log(AppState.activeVault);
+    // console.log(AppState.activeVault);
 
 
   }
 
   async addToVault(vaultData) {
-    console.log(vaultData);
+    // console.log(vaultData);
     const res = await api.post(`api/vaultkeeps`, vaultData)
     AppState.activeKeep.kept++
-    console.log(res.data);
+    // console.log(res.data);
   }
 
   async editVault(vaultData, id) {
@@ -64,7 +65,7 @@ class VaultsService {
 
   async removeVaultKeep(id) {
     const res = await api.delete(`api/vaultkeeps/${id}`)
-    console.log(res.data);
+    // console.log(res.data);
 
     AppState.keeps = AppState.keeps.filter(k => k.vaultKeepId != id)
   }

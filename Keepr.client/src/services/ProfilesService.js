@@ -9,7 +9,7 @@ class ProfilesService {
     const res = await api.get(`api/profiles/${id}`)
     console.log(res.data);
     AppState.activeProfile = res.data
-    console.log(AppState.activeProfile);
+    // console.log(AppState.activeProfile);
   }
 
   async getProfileKeeps(id) {
@@ -17,15 +17,15 @@ class ProfilesService {
     // console.log(res.data);
     // console.log(res.data);
     AppState.keeps = res.data.map(k => new Keep(k))
-    console.log(AppState.keeps);
+    // console.log(AppState.keeps);
   }
 
   async getProfileVaults(id) {
     const res = await api.get(`api/profiles/${id}/vaults`)
     // console.log(res.data);
-    console.log(res.data);
+    // console.log(res.data);
     AppState.vaults = res.data.map(v => new Vault(v))
-    console.log(AppState.vaults);
+    // console.log(AppState.vaults);
   }
 }
 
