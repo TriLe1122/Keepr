@@ -12,18 +12,18 @@ public class VaultKeepsService
     _vs = vs;
   }
 
-  internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData , string userId)
+  internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData, string userId)
   {
     Vault vault = _vs.GetVaultById(vaultKeepData.VaultId, vaultKeepData.CreatorId);
-  if (vault.CreatorId != userId)
-      {
-        throw new Exception("bad vault id");
-      }
+    if (vault.CreatorId != userId)
+    {
+      throw new Exception("bad vault id");
+    }
 
-  // Increment Kepts
-    var cat =  _vkRepo.CreateVaultKeep(vaultKeepData);
-    
-    return cat;
+    // Increment Kepts
+    var kepts = _vkRepo.CreateVaultKeep(vaultKeepData);
+
+    return kepts;
   }
 
   // internal List<KeepInVault> GetKeepsByVaultId(int vaultId)
@@ -58,5 +58,5 @@ public class VaultKeepsService
     return vk;
   }
 
-  
+
 }

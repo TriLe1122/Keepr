@@ -32,7 +32,7 @@ public class VaultsService
     {
       if (vault.CreatorId != userId)
       {
-        throw new Exception("Bad Vault Idsfgsdgsdgsdgfsdgsfdgd");
+        throw new Exception("This is a vault you don't have access too");
       }
     }
     return vault;
