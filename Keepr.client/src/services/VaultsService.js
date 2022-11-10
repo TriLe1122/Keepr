@@ -2,6 +2,7 @@ import { AppState } from "../AppState.js";
 import { Keep } from "../models/Keep.js";
 import { KeptKeep } from "../models/KeptKeep.js";
 import { Vault } from "../models/Vault.js";
+import { VaultKeepIds } from "../models/VaultKeepIds.js";
 import { router } from "../router.js";
 import { api } from "./AxiosService.js"
 
@@ -54,6 +55,7 @@ class VaultsService {
     const res = await api.post(`api/vaultkeeps`, vaultData)
     AppState.activeKeep.kept++
     // console.log(res.data);
+    AppState.vaultKeepIds = [...AppState.vaultKeepIds,new VaultKeepIds(res.data)]
   }
 
   async editVault(vaultData, id) {
@@ -68,6 +70,13 @@ class VaultsService {
     // console.log(res.data);
 
     AppState.keeps = AppState.keeps.filter(k => k.vaultKeepId != id)
+  }
+
+  async getAllVaultKeeps() {
+    const res = await api.get("api/vaultkeeps")
+    console.log(res.data);
+    AppState.vaultKeepIds = res.data.map(x => new VaultKeepIds(x))
+    console.log(AppState.vaultKeepIds);
   }
 }
 
