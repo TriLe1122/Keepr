@@ -32,6 +32,7 @@ public class KeepsRepository : BaseRepository
     JOIN accounts a ON a.id = k.creatorId
     LEFT JOIN vaultKeeps vk ON vk.keepId = k.id
     GROUP BY k.id
+    ORDER BY k.createdAt DESC
     ;";
     return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
      {

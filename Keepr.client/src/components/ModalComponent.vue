@@ -30,5 +30,6 @@ export default {
 
   background: rgb(81, 51, 101);
   background: linear-gradient(34deg, rgba(81, 51, 101, 1) 0%, rgba(253, 29, 29, 0.46544555322128855) 50%, rgba(186, 125, 39, 1) 100%);
+  backdrop-filter: blur(3px);
 }
 </style>

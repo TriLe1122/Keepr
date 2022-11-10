@@ -76,9 +76,9 @@ export default {
 
 <style lang="scss" scoped>
 .input-image {
-  object-fit: cover;
+  // object-fit: cover;
   background-size: cover;
   background-position: center;
-  height: 30rem;
+  height: 40rem;
 }
 </style>

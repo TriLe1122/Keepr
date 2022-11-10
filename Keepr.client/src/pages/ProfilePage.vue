@@ -15,8 +15,8 @@
     <div class="stuff">
       <div class="container-fluid">
 
+        <h3>Vaults</h3>
         <section class="container vaults mt-5">
-          <h3>Vaults</h3>
           <div class="d-flex">
             <div v-for="v in vaults" :key="v.id">
               <VaultCard :vault="v" />
@@ -27,8 +27,8 @@
         </section>
       </div>
 
+      <h3 class="mt-5">Keeps</h3>
       <section class="container">
-        <h3 class="mt-5">Keeps</h3>
         <div class="masonry my-3">
           <div v-for="k in keeps" :key="k.id">
             <KeepCard :keep="k" />

@@ -25,8 +25,9 @@
           <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
         </ul>
       </div>
+
+      <h3>Vaults</h3>
       <section class="container vaults mt-5">
-        <h3>Vaults</h3>
         <div class="d-flex">
           <div v-for="v in vaults" :key="v.id">
             <VaultCard :vault="v" />
@@ -35,8 +36,8 @@
       </section>
     </div>
 
+    <h3 class="mt-5">Keeps</h3>
     <section class="container mt-5">
-      <h3>Keeps</h3>
       <div class="masonry my-5">
         <div v-for="k in keeps" :key="k.id">
           <KeepCard :keep="k" />

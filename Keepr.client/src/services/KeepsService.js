@@ -41,7 +41,7 @@ class KeepsService {
   async createKeep(data) {
     const res = await api.post("api/keeps", data)
     // console.log(res.data);
-    AppState.keeps = [new Keep(res.data), ...AppState.keeps]
+    AppState.keeps = [...AppState.keeps, new Keep(res.data)]
   }
 
   async removeKeep(id) {

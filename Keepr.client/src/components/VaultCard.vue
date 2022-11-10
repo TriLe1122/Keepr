@@ -61,7 +61,7 @@ export default {
 .component {
   width: 350px;
   height: 250px;
-  object-fit: fill;
+  // object-fit: fill;
   background-size: cover;
   background-position: center;
 }
