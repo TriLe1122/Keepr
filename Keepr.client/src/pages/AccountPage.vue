@@ -6,7 +6,8 @@
     <div class="col-8 about text-center cover container rounded-5 "
       :style="{ backgroundImage: `url(${account.coverImg})` }">
       <div class=" info mb-5">
-        <img class="rounded-circle border border-white border-4" height="100" width="150" :src="account.picture " alt="" />
+        <img class="rounded-circle border border-white border-4" height="100" width="150" :src="account.picture"
+          alt="" />
         <p class="name">{{ account.name }}</p>
         <p class="fs-1">
           {{ vaults.length }} Vaults | {{ keeps.length }} Keeps
@@ -79,7 +80,7 @@ export default {
     return {
       account: computed(() => AppState.account),
       keeps: computed(() => AppState.keeps),
-      vaults: computed(() => AppState.vaults)
+      vaults: computed(() => AppState.myVaults)
     };
   },
   components: { VaultCard }
@@ -97,7 +98,7 @@ export default {
   position: relative;
 }
 
-.name{
+.name {
   font-weight: 400;
 }
 
@@ -118,9 +119,9 @@ img {
 
 .info {
   position: absolute;
- margin-top: 20rem;
- margin-left: 16rem;
-font-family: 'Oxygen';
+  margin-top: 20rem;
+  margin-left: 16rem;
+  font-family: 'Oxygen';
   font-style: normal;
   /* font-weight: 700; */
   font-size: 48px;
@@ -132,7 +133,7 @@ font-family: 'Oxygen';
     columns: 2
   }
 
-  .info{
+  .info {
     margin-top: 20rem;
     margin-left: 0;
   }

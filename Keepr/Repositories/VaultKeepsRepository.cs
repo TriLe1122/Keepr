@@ -65,8 +65,8 @@ public class VaultKeepsRepository : BaseRepository
             k.*,
             a.*
           FROM vaultKeeps vk
-          JOIN accounts a ON a.id = vk.creatorId
           JOIN keeps k On k.id = vk.keepId
+          JOIN accounts a ON a.id = k.creatorId
           WHERE vk.vaultId = @vaultId
           GROUP BY vk.id
           ;";

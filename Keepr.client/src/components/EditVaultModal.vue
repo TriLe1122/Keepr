@@ -40,10 +40,10 @@
 
 
 
-      <div class="col-md-6  rounded-3 text-shadow elevation-5 pic" :style="{ backgroundImage: `url(${editable.img})` }">
+      <div class="col-md-6  rounded-3 text-shadow elevation-5 pic d-flex flex-column justify-content-between text-center" :style="{ backgroundImage: `url(${editable.img})` }">
         <p class="text-shadow fs-3 d-flex  justify-content-center">{{ editable.name }}</p>
-        <i class="mdi mdi-lock fs-4 d-flex  justify-content-end" v-if="editable.isPrivate == true"></i>
-        <p>{{ editable.description }}</p>
+        <i class="mdi mdi-lock fs-4 d-flex  justify-content-center" v-if="editable.isPrivate == true"></i>
+        <p class="fs-4">{{ editable.description }}</p>
       </div>
 
 

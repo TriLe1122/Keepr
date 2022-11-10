@@ -9,7 +9,7 @@ class VaultsService {
   async createVault(data) {
     const res = await api.post("api/vaults", data)
     // console.log(res.data, 'res');
-    AppState.keeps = new Keep(res.data)
+    AppState.myVaults.push(new Vault(res.data))
   }
 
   async getKeepsInVault(id) {

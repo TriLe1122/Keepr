@@ -1,11 +1,14 @@
 <template>
-  <div class="card text-bg-warning border-0 my-3 elevation-5 selectable hover " @click="getKeepDetails()" :title="keep?.name" data-bs-toggle="modal" data-bs-target="#keep-modal">
-    <i class="mdi mdi-close text-white bg-danger rounded-circle selectable on-hover text-center" @click="removeKeep()"  v-if="keep.creator?.id == account?.id"></i>
-    <img :src="keep?.img" class="card-img  rounded-4" alt="..." >
+  <div class="card text-bg-warning border-0 my-3 elevation-5 selectable hover " @click="getKeepDetails()"
+    :title="keep?.name" data-bs-toggle="modal" data-bs-target="#keep-modal">
+    <i class="mdi mdi-close text-white bg-danger rounded-circle selectable on-hover text-center" @click="removeKeep()"
+      v-if="keep.creator?.id == account?.id" title="Remove Keep"></i>
+    <img :src="keep?.img" class="card-img  rounded-4" alt="...">
     <div class="card-img-overlay align-items-end d-flex justify-content-between">
-      <h5 class="card-title text-shadow" >{{ keep?.name
+      <h5 class="card-title text-shadow">{{ keep?.name
       }}</h5>
-      <img :src="keep.creator?.picture" class="person rounded-circle border border-white border-1" alt="" height="40" width="40" :title="keep.creator?.name" v-if="home">
+      <img :src="keep.creator?.picture" class="person rounded-circle border border-white border-1" alt="" height="40"
+        width="40" :title="keep.creator?.name" v-if="home">
       <!-- <button class="btn btn-danger rounded-circle on-hover" @click="removeKeep()"
         v-if="keep.creator.id == account.id">x</button> -->
     </div>
@@ -69,11 +72,11 @@ export default {
 
       async getKeptKeepDetails() {
         try {
-            await vaultsService.getKeptKeepDetails()
-          } catch (error) {
-            console.error('[]',error)
-            Pop.error(error)
-          }
+          await vaultsService.getKeptKeepDetails()
+        } catch (error) {
+          console.error('[]', error)
+          Pop.error(error)
+        }
       }
 
     }
@@ -95,11 +98,11 @@ i {
   z-index: 9999;
 }
 
-.card-title{
+.card-title {
   font-family: 'Marko One';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 29px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 29px;
 }
 </style>

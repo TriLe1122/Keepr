@@ -4,7 +4,7 @@
       :style="{ backgroundImage: `url(${profile?.coverImg})` }">
 
       <div class=" info mb-5">
-        <img class="rounded-circle border border-white border-3" height="100" width="100" :src="profile?.picture" alt="" />
+        <img class="rounded-circle border border-white border-3 " height="100" width="100" :src="profile?.picture" alt="" />
         <h1>{{ profile?.name }}</h1>
         <p class="fs-1">
           {{ vaults.length }} Vaults | {{ keeps.length }} Keeps
@@ -135,7 +135,7 @@ img {
 .info {
   position: absolute;
   margin-top: 22rem;
-  margin-left: 13rem;
+  margin-left: 17rem;
   font-family: 'Oxygen';
   font-style: normal;
   /* font-weight: 700; */
@@ -150,7 +150,7 @@ img {
 
   .info {
     margin-top: 20rem;
-    margin-left: -2.5rem;
+    margin-left: .5rem;
   }
 }
 </style>

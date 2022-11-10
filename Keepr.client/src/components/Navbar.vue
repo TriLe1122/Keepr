@@ -2,28 +2,28 @@
   <nav class="navbar navbar-expand-lg   px-3 d-flex justify-content-between elevation-3 ">
     <div class="d-flex">
       <router-link class="" :to="{ name: 'Home' }">
-        <button class="button btn border border-3 me-3 hover">Home</button>
+        <button class="button btn border border-3 me-3 ">Home</button>
       </router-link>
 
 
 
-
-      <div class="dropdown" v-if="!profilePage">
-        <button class="btn btn border border-3 dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          Create
-        </button>
-
-        <ul class="dropdown-menu text-center p-0">
-          <li data-bs-toggle="modal" data-bs-target="#create-keep-modal">new keep</li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li data-bs-toggle="modal" data-bs-target="#create-vault-modal">new vault</li>
-        </ul>
-
+      <div v-if="user.isAuthenticated">
+        <div class="dropdown" v-if="!profilePage">
+          <button class="btn btn border border-3 dropdown-toggle dropdown-toggle-split" type="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Create
+          </button>
+          <ul class="dropdown-menu text-center p-0">
+            <li data-bs-toggle="modal" data-bs-target="#create-keep-modal" class="selectable">new keep</li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li data-bs-toggle="modal" data-bs-target="#create-vault-modal" class="selectable">new vault</li>
+          </ul>
+        </div>
       </div>
     </div>
+
 
 
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
@@ -43,11 +43,13 @@
 import Login from './Login.vue'
 import { useRoute } from "vue-router";
 import { computed } from "@vue/reactivity";
+import { AppState } from "../AppState.js";
 export default {
   setup() {
     const route = useRoute()
     return {
-      profilePage: computed(() => route.name == "Profile")
+      profilePage: computed(() => route.name == "Profile"),
+      user: computed(() => AppState.user),
     }
   },
   components: { Login }
@@ -59,7 +61,7 @@ a:hover {
   text-decoration: none;
 }
 
-nav{
+nav {
   background-color: #FEF6F0;
 }
 

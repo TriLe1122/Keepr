@@ -65,7 +65,7 @@ export default {
         try {
 
           await accountService.editAccount(editable.value)
-          Modal.getOrCreateInstance('#create-keep-modal').hide()
+          Modal.getOrCreateInstance('#edit-account-modal').hide()
         } catch (error) {
           console.error('[]', error)
           Pop.error(error)

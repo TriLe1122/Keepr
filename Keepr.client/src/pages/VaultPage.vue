@@ -3,11 +3,12 @@
 
 
     <section class="container mt-3">
-      <div class="row justify-content-center">
-        <div class="col-md-8 text-center rounded-5 p-5 text-shadow cover" :style="{ backgroundImage: `url(${vault?.img})` }">
+      <div class="row justify-content-center ">
+        <div class="col-md-8 text-center rounded-5 p-5 text-shadow cover d-flex flex-column justify-content-between" :style="{ backgroundImage: `url(${vault?.img})` }">
           <h1>{{ vault?.name }}</h1>
           <p>by {{ vault?.creator?.name }}</p>
           <i class="mdi mdi-lock text-shadow fs-4" v-if="vault?.isPrivate"></i>
+          <p class="fs-5">{{vault?.description}}</p>
         </div>
       </div>
       <div class="dropdown mt-5 d-flex" v-if="vault?.creator?.id == account?.id">
@@ -18,7 +19,7 @@
       
         </ul>
       </div>
-      <div class="text-center rounded m-3">
+      <div class="text-center rounded m-3" v-if="keeps.length > 0">
         
         <p class="fs-1">
           {{ keeps?.length }} Keeps

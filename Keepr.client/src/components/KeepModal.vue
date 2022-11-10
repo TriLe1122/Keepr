@@ -2,9 +2,10 @@
   <div class="modal-body p-0 elevation-5">
     <div class="row rounded-5">
 
-      <div class="col-md-6 pic rounded-start" :style="{ backgroundImage: `url(${keep.img})` }">
+      <div class="col-md-6 pic rounded-start" :style="{ backgroundImage: `url(${keep?.img})` }">
         <!-- <img :src="keep.img" alt="" class="img-fluid rounded-start h-100 piccy"> -->
-        <i class="mdi mdi-close text-danger fs-1 selectable rounded d-md-none d-block" title="close modal" data-bs-dismiss="modal"></i>
+        <i class="mdi mdi-close text-danger fs-1 selectable rounded d-md-none d-block" title="close modal"
+          data-bs-dismiss="modal"></i>
       </div>
 
 
@@ -35,15 +36,23 @@
                   @click="removeKeep()"></i>
               </div>
 
-              <div class="dropdown " v-if="routeVault">
-                <i class="mdi mdi-dots-horizontal fs-1 " type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false"></i>
-                <ul class="dropdown-menu">
-                  <li @click="removeVaultKeep(keep?.vaultKeepId)" class="selectable no-select">Remove From Vault</li>
-                  <!-- <li @click="removeVaultKeep(keep?.vaultKeepId)">Remove From Vault</li> -->
-
-                </ul>
+              <div v-if="user.isAuthenticated">
+                <div v-if="vault?.creator?.id == account?.id">
+                  <div class="dropdown ">
+                    <i class="mdi mdi-dots-horizontal fs-1 " type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false"></i>
+                    <ul class="dropdown-menu">
+                      <li @click="removeVaultKeep(keep?.vaultKeepId)" class="selectable no-select">Remove From Vault
+                      </li>
+                      <!-- <li @click="removeVaultKeep(keep?.vaultKeepId)">Remove From Vault</li> -->
+                    </ul>
+                  </div>
+                </div>
               </div>
+
+
+
+
             </div>
           </div>
 
@@ -57,16 +66,16 @@
 
         <div class="">
           <h4 class="text-center keep-name">
-            {{ keep.name }}
+            {{ keep?.name }}
           </h4>
           <p class="p-4 grey description">
-            {{ keep.description }}
+            {{ keep?.description }}
           </p>
         </div>
         <div class="d-flex justify-content-end justify-content-between">
           <!-- <AddKeepToVault/> -->
 
-          <form @submit.prevent="addToVault()">
+          <form @submit.prevent="addToVault()" v-if="user.isAuthenticated">
             <div class="d-flex">
               <select class="form-select border-0" v-model="editable">
                 <option v-for="v in vaults" :value="v"><a class="dropdown-item" placeholder="Add to Vault">
@@ -84,11 +93,11 @@
 
 
           <div class="d-flex me-3 mb-1">
-            <router-link :to="{ name: 'Profile', params: { id: keep.creator.id } }">
-              <img :src="keep.creator.picture" alt="" class="rounded-circle mx-2 mb-2" height="40" width="40"
+            <router-link :to="{ name: 'Profile', params: { id: keep.creator?.id } }">
+              <img :src="keep.creator?.picture" alt="" class="rounded-circle mx-2 mb-2" height="40" width="40"
                 data-bs-dismiss="modal">
             </router-link>
-            <p class="name">{{ keep.creator.name }}</p>
+            <p class="name">{{ keep.creator?.name }}</p>
           </div>
 
 
@@ -135,7 +144,9 @@ export default {
     const route = useRoute()
     return {
       editable,
-      vaults: computed(() => AppState.vaults),
+      vaults: computed(() => AppState.myVaults),
+      vault: computed(() => AppState.activeVault),
+      user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       keeps: computed(() => AppState.activeKeep),
       routeAccount: computed(() => route.name.includes('Account')),
@@ -160,7 +171,7 @@ export default {
         try {
           if (await Pop.confirm())
             await vaultsService.removeVaultKeep(id)
-          Modal.getOrCreateInstance('#edit-vault-modal').hide()
+          Modal.getOrCreateInstance('#keep-modal').hide()
         } catch (error) {
           console.error('[]', error)
           Pop.error(error)
@@ -213,6 +224,7 @@ export default {
 .pic {
   height: 70vh;
   background-size: cover;
+  background-position: center;
 
 }
 

@@ -1,4 +1,5 @@
 <template>
+  <router-link :to="{ name: 'Vault', params: { id: vault.id } }">
   <div class="component hover my-2 mx-3 rounded-3 mt-4 elevation-5 hover d-flex justify-content-between align-items-end"
     :style="{ backgroundImage: `url(${vault.img})` }">
     <div class="d-flex justify-content-between">
@@ -8,21 +9,20 @@
 
       <div class="align-items-end d-flex text-light justify-content-between">
 
-        <router-link :to="{ name: 'Vault', params: { id: vault.id } }">
           <h1 class="text-shadow vault-name ms-4 mb-2">{{ vault.name }}</h1>
           <!-- <p class="d-flex justify-content-end">hi</p> -->
-        </router-link>
-        <!-- <i class="mdi mdi-lock fs-4"></i> -->
-        <!-- <img alt="logo" src="src\assets\img\Vector (3).png" class="m-auto justify-content-end d-flex" /> -->
-
+          <!-- <i class="mdi mdi-lock fs-4"></i> -->
+          <!-- <img alt="logo" src="src\assets\img\Vector (3).png" class="m-auto justify-content-end d-flex" /> -->
+          
+        </div>
+      </div>
+      <div>
+        <i class="mdi mdi-lock text-shadow fs-2  rounded-circle" v-if="vault.isPrivate"></i>
+        <!-- <i class="mdi mdi-lock text-danger" v-if="vault?.isPrivate"></i> -->
+        
       </div>
     </div>
-    <div>
-      <i class="mdi mdi-lock text-shadow fs-2  rounded-circle" v-if="vault.isPrivate"></i>
-      <!-- <i class="mdi mdi-lock text-danger" v-if="vault?.isPrivate"></i> -->
-
-    </div>
-  </div>
+  </router-link>
 
 </template>
 
