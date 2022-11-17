@@ -1,7 +1,7 @@
 <template>
   <div class="card text-bg-warning border-0 my-3 elevation-5 selectable hover " 
     :title="keep?.name" data-bs-toggle="modal" data-bs-target="#keep-modal" @click="getKeepDetails()">
-    <i class="mdi mdi-close text-white bg-danger rounded-circle selectable on-hover text-center" @click="removeKeep()"
+    <i class="mdi mdi-close text-white bg-danger rounded-circle selectable on-hover text-center"
       v-if="keep.creator?.id == account?.id" title="Remove Keep"></i>
     <img :src="keep?.img" class="card-img  rounded-4" alt="...">
     <div class="card-img-overlay align-items-end d-flex justify-content-between">

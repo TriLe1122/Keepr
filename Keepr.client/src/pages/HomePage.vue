@@ -5,8 +5,6 @@
         <KeepCard :keep="k" />
       </div>
     </div>
-
-
   </section>
 </template>
 
